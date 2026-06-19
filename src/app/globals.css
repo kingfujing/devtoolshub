@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-card: #1e293b;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --border: #334155;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* Code editor area */
+.code-editor {
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Smooth transitions */
+.tool-card {
+  transition: all 0.2s ease;
+}
+.tool-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.15);
+}
+
+/* Button base */
+.btn-primary {
+  background: var(--accent);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+}
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-primary:active { transform: scale(0.97); }
+
+/* Input base */
+.input-field {
+  background: #0f172a;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: var(--text-primary);
+  font-size: 14px;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.2s;
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+}
+.input-field:focus { border-color: var(--accent); }
+
+/* Tool textarea */
+.tool-textarea {
+  background: #0f172a;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  color: var(--text-primary);
+  font-size: 14px;
+  width: 100%;
+  min-height: 200px;
+  outline: none;
+  resize: vertical;
+  transition: border-color 0.2s;
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  line-height: 1.6;
+}
+.tool-textarea:focus { border-color: var(--accent); }
+
+/* Ad placeholder */
+.ad-container {
+  min-height: 90px;
+  background: rgba(255,255,255,0.02);
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
