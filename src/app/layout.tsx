@@ -2,9 +2,20 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "DevToolsHub — Free Online Developer Tools",
+  title: {
+    default: "DevToolsHub — Free Online Developer Tools",
+    template: "%s",
+  },
   description: "Free online developer tools: JSON Formatter, Base64 Encoder/Decoder, Regex Tester, UUID Generator, Timestamp Converter and more. All data is processed locally in your browser.",
   keywords: "developer tools, online tools, JSON formatter, Base64, regex tester, UUID generator, timestamp converter, color converter, URL encoder, JWT decoder, dev tools",
+  openGraph: {
+    title: "DevToolsHub — Free Online Developer Tools",
+    description: "Free online developer tools. All tools run in your browser — your data never touches any server.",
+    type: "website",
+  },
+  verification: {
+    // google: "YOUR_VERIFICATION_CODE",
+  },
 };
 
 const TOOLS = [
