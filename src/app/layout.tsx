@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   verification: {
-    // google: "YOUR_VERIFICATION_CODE",
+    google: "google61c95696a0eeffd3",
   },
 };
 
