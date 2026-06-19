@@ -1,6 +1,45 @@
 import Link from "next/link";
 import AdSlot from "@/components/AdSlot";
 
+const ARTICLES = [
+  {
+    title: "10 Free Online Developer Tools to Supercharge Your Workflow in 2026",
+    desc: "Discover essential free developer tools for 2026 — from JSON formatting to regex testing. All are privacy-first and run locally in your browser.",
+    href: "/blog/10-free-developer-tools-2026",
+    tag: "Productivity",
+    date: "Jun 19, 2026",
+    readTime: "8 min",
+    color: "from-blue-500 to-cyan-500",
+  },
+  {
+    title: "JSON Formatting 101: How to Debug JSON Data Like a Pro",
+    desc: "Master JSON formatting, validation, and debugging. Learn common mistakes, best practices, and how to use a JSON formatter effectively.",
+    href: "/blog/json-formatting-101",
+    tag: "Tutorial",
+    date: "Jun 19, 2026",
+    readTime: "6 min",
+    color: "from-yellow-500 to-orange-500",
+  },
+  {
+    title: "Base64 Encoding & Decoding: What Every Developer Needs to Know",
+    desc: "Learn how Base64 works, when to use it, and browser pitfalls. Includes practical examples with data URLs, JWT tokens, and Unicode handling.",
+    href: "/blog/base64-encoding-guide",
+    tag: "Tutorial",
+    date: "Jun 19, 2026",
+    readTime: "7 min",
+    color: "from-green-500 to-emerald-500",
+  },
+  {
+    title: "The Complete Guide to Writing Better Regular Expressions",
+    desc: "Practical regex patterns, named capture groups, common traps like catastrophic backtracking, and debugging techniques for daily use.",
+    href: "/blog/regex-guide",
+    tag: "Tutorial",
+    date: "Jun 19, 2026",
+    readTime: "10 min",
+    color: "from-purple-500 to-pink-500",
+  },
+];
+
 const TOOLS = [
   {
     name: "JSON Formatter",
@@ -102,6 +141,48 @@ export default function HomePage() {
               </div>
             </Link>
           ))}
+        </div>
+      </section>
+
+      {/* Blog Articles */}
+      <section className="mb-16">
+        <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+          <span className="w-1 h-5 bg-cyan-500 rounded-full inline-block"></span>
+          Latest from the Blog
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {ARTICLES.map((article) => (
+            <Link
+              key={article.href}
+              href={article.href}
+              className="blog-card block rounded-xl border border-[#334155] bg-[#1e293b] p-6 hover:border-blue-500/30"
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <span className={`text-xs font-medium px-2.5 py-0.5 rounded-full bg-gradient-to-r ${article.color} text-white`}>
+                  {article.tag}
+                </span>
+                <span className="text-xs text-[#64748b]">{article.date}</span>
+                <span className="text-xs text-[#64748b]">· {article.readTime}</span>
+              </div>
+              <h3 className="text-white font-semibold mb-2 leading-snug">
+                {article.title}
+              </h3>
+              <p className="text-[#94a3b8] text-sm leading-relaxed">
+                {article.desc}
+              </p>
+              <div className="mt-4 flex items-center gap-1 text-sm text-[#3b82f6]">
+                Read Article <span className="text-lg leading-none">→</span>
+              </div>
+            </Link>
+          ))}
+        </div>
+        <div className="mt-6 text-center">
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-1.5 text-sm text-[#3b82f6] hover:text-blue-300 transition-colors font-medium"
+          >
+            View All Articles <span className="text-lg leading-none">→</span>
+          </Link>
         </div>
       </section>
 
