@@ -97,6 +97,13 @@ const TOOLS = [
     icon: "🔐",
     color: "from-rose-500 to-pink-500",
   },
+  {
+    name: "AI ID Photo",
+    desc: "Remove background and create standard ID photos (1-inch, 2-inch) — runs locally in your browser",
+    href: "/tools/ai-id-photo",
+    icon: "📷",
+    color: "from-sky-500 to-indigo-500",
+  },
 ];
 
 export default function HomePage() {
