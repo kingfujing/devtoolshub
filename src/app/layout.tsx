@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import CookieConsent from "@/components/CookieConsent";
 
 export const metadata: Metadata = {
   title: {
@@ -65,6 +66,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               >
                 Blog
               </a>
+              <a
+                href="/about"
+                className="px-3 py-1.5 text-sm text-[#94a3b8] hover:text-white rounded-md hover:bg-[#1e293b] transition-colors"
+              >
+                About
+              </a>
             </nav>
             <div className="md:hidden flex items-center gap-2">
               <a href="/tools" className="text-sm text-[#3b82f6] hover:text-blue-300 transition-colors">
@@ -78,6 +85,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="flex-1">
           {children}
         </main>
+
+        <CookieConsent />
 
         {/* Footer */}
         <footer className="border-t border-[#334155] bg-[#0f172a]">
@@ -104,9 +113,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <div>
                 <h3 className="text-sm font-semibold text-white mb-3">About</h3>
                 <ul className="space-y-2">
+                  <li><a href="/about" className="text-xs text-[#64748b] hover:text-[#3b82f6] transition-colors">About Us</a></li>
                   <li><a href="/blog" className="text-xs text-[#64748b] hover:text-[#3b82f6] transition-colors">Blog</a></li>
                   <li><a href="/privacy" className="text-xs text-[#64748b] hover:text-[#3b82f6] transition-colors">Privacy Policy</a></li>
-                  <li><a href="/contact" className="text-xs text-[#64748b] hover:text-[#3b82f6] transition-colors">Contact</a></li>
+                  <li><a href="/terms" className="text-xs text-[#64748b] hover:text-[#3b82f6] transition-colors">Terms of Service</a></li>
+                  <li><a href="/about" className="text-xs text-[#64748b] hover:text-[#3b82f6] transition-colors">Contact</a></li>
                 </ul>
               </div>
             </div>

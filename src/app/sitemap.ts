@@ -5,7 +5,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     { url: baseUrl, lastModified: new Date(), changeFrequency: "weekly", priority: 1.0 },
+    { url: `${baseUrl}/about`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.4 },
     { url: `${baseUrl}/privacy`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.3 },
+    { url: `${baseUrl}/terms`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.3 },
     { url: `${baseUrl}/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
     { url: `${baseUrl}/blog/10-free-developer-tools-2026`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
     { url: `${baseUrl}/blog/json-formatting-101`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
@@ -19,5 +21,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/tools/color-converter`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tools/url-encoder`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/tools/jwt-decoder`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/tools/ai-id-photo`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
   ];
 }
