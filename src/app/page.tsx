@@ -3,6 +3,33 @@ import AdSlot from "@/components/AdSlot";
 
 const ARTICLES = [
   {
+    title: "UUID v4 vs UUID v7: Which One Should You Use?",
+    desc: "Compare random vs time-ordered UUIDs, database index performance, and when to choose each for your project.",
+    href: "/blog/uuid-v4-vs-v7",
+    tag: "Comparison",
+    date: "Jun 24, 2026",
+    readTime: "7 min",
+    color: "from-cyan-500 to-blue-500",
+  },
+  {
+    title: "How to Decode JWT Tokens Without a Backend",
+    desc: "Learn to inspect JWT tokens client-side. Understand headers, claims, signatures, and security pitfalls.",
+    href: "/blog/jwt-decoder-guide",
+    tag: "Tutorial",
+    date: "Jun 24, 2026",
+    readTime: "8 min",
+    color: "from-rose-500 to-pink-500",
+  },
+  {
+    title: "Unix Timestamp Cheat Sheet for Developers",
+    desc: "Master timestamps: seconds vs ms, timezone gotchas, JWT exp checks, and one-liners for 8 languages.",
+    href: "/blog/timestamp-cheat-sheet",
+    tag: "Cheat Sheet",
+    date: "Jun 24, 2026",
+    readTime: "6 min",
+    color: "from-amber-500 to-red-500",
+  },
+  {
     title: "10 Free Online Developer Tools to Supercharge Your Workflow in 2026",
     desc: "Discover essential free developer tools for 2026 — from JSON formatting to regex testing. All are privacy-first and run locally in your browser.",
     href: "/blog/10-free-developer-tools-2026",
