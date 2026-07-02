@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import CookieConsent from "@/components/CookieConsent";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: {
@@ -87,6 +88,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </main>
 
         <CookieConsent />
+        <Analytics />
 
         {/* Footer */}
         <footer className="border-t border-[#334155] bg-[#0f172a]">
