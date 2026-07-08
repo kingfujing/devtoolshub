@@ -128,6 +128,50 @@ export default function Base64Page() {
         </p>
       </div>
 
+      
+      {/* About This Tool */}
+      <section className="mt-12 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">About This Tool</h2>
+        <div className="space-y-3 text-[#94a3b8] text-sm leading-relaxed">
+          <p>Base64 encoding is a fundamental technique that converts binary data into ASCII text, making it safe for transmission over text-based protocols like HTTP, email, and JSON. This free online Base64 encoder/decoder handles everything from short strings to complex data with full Unicode support.</p>
+          <p>Developers use Base64 encoding for embedding images as data URIs in HTML and CSS, encoding binary data in JSON payloads, handling JWT token parts (header and payload are Base64url-encoded), and storing binary content in text-based databases. The decoder mode is equally useful for inspecting encoded data or debugging API responses.</p>
+          <p>This tool fully supports Chinese characters, emoji, and Unicode — things that many basic Base64 tools get wrong. All processing happens in your browser with zero server uploads.</p>
+        </div>
+      </section>
+
+      <section className="mt-10 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+            <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+              <span>Is my data safe?</span>
+              <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+              Absolutely. All encoding and decoding is done client-side using browser btoa() and atob() functions with Unicode support. Nothing is uploaded.
+            </div>
+          </details>
+          <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+            <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+              <span>Does it support Chinese characters?</span>
+              <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+              Yes. The tool handles Chinese, Japanese, Arabic, emoji, and any Unicode characters correctly — a common pitfall with basic Base64 tools.
+            </div>
+          </details>
+          <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+            <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+              <span>What is Base64 commonly used for?</span>
+              <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+              Common uses: embedding images as data URIs, encoding binary data in JSON APIs, JWT token parts, and storing binary content in databases.
+            </div>
+          </details>
+        </div>
+      </section>
+
       <AdSlot className="mt-8" />
     </div>
   );

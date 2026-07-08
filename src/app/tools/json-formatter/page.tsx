@@ -121,6 +121,50 @@ export default function JsonFormatterPage() {
         <p className="text-xs text-[#64748b]">💡 Click output to auto-copy · All data is processed locally in your browser</p>
       </div>
 
+      
+      {/* About This Tool */}
+      <section className="mt-12 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">About This Tool</h2>
+        <div className="space-y-3 text-[#94a3b8] text-sm leading-relaxed">
+          <p>A JSON formatter is an essential tool for every developer working with APIs, configuration files, and data exchange. This free online JSON formatter lets you beautify, compress, and validate JSON data instantly — all in your browser.</p>
+          <p>Common use cases include debugging API responses during development, formatting configuration files like <code>package.json</code> or <code>tsconfig.json</code>, validating JSON before importing it into a database, and sharing formatted JSON snippets with your team. Whether you're preparing a bug report that includes API output or just need to read a messy JSON blob, this tool makes it clean and readable.</p>
+          <p>The JSON formatter supports adjustable indentation (2 spaces, 4 spaces, 1 space, or minified), real-time error detection with descriptive messages, and one-click copy of the output.</p>
+        </div>
+      </section>
+
+      <section className="mt-10 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+            <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+              <span>Is my JSON data sent to a server?</span>
+              <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+              No. All JSON processing is done entirely in your browser using JavaScript's built-in JSON.parse() and JSON.stringify(). Your data never leaves your device.
+            </div>
+          </details>
+          <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+            <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+              <span>What indentation options are available?</span>
+              <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+              You can choose between 2 spaces, 4 spaces, 1 space, or minified (0 spaces). 2 spaces is the most common convention for readability.
+            </div>
+          </details>
+          <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+            <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+              <span>What happens if my JSON is invalid?</span>
+              <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+              The tool shows a clear error message describing the parsing error, including where the error occurred.
+            </div>
+          </details>
+        </div>
+      </section>
+
       <AdSlot className="mt-8" />
     </div>
   );

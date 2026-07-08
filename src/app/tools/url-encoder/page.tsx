@@ -140,6 +140,50 @@ export default function UrlEncoderPage() {
         </p>
       </div>
 
+      
+      {/* About This Tool */}
+      <section className="mt-12 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">About This Tool</h2>
+        <div className="space-y-3 text-[#94a3b8] text-sm leading-relaxed">
+          <p>URL encoding (also known as percent-encoding) converts special characters into a format that can be safely transmitted in URLs. This free online URL encoder/decoder handles both encoder modes — for query parameters and for full URLs — with instant bidirectional conversion.</p>
+          <p>Essential use cases include encoding user input before appending it as URL query parameters, decoding URLs from web server logs for inspection, handling non-ASCII characters in internationalized URLs, and preparing data for REST API calls that include special characters.</p>
+          <p>The tool provides two encoding modes: <code>encodeURIComponent</code> for query parameters (encodes everything including ?, &, and /) and <code>encodeURI</code> for full URLs (preserves structural characters). A convenient swap button lets you quickly switch between encoder and decoder modes.</p>
+        </div>
+      </section>
+
+      <section className="mt-10 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+            <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+              <span>What's the difference between the two encoder modes?</span>
+              <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+              encodeURIComponent encodes everything including ?, &, /, = for query parameters. encodeURI preserves URL structure characters for encoding full URLs.
+            </div>
+          </details>
+          <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+            <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+              <span>Does it support non-ASCII characters?</span>
+              <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+              Yes, it handles all Unicode characters including Chinese, emoji, accented letters, and special symbols.
+            </div>
+          </details>
+          <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+            <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+              <span>Is my data uploaded anywhere?</span>
+              <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+              No. All encoding and decoding is done client-side using JavaScript's built-in encodeURIComponent() and decodeURIComponent(). Zero server uploads.
+            </div>
+          </details>
+        </div>
+      </section>
+
       <AdSlot className="mt-8" />
     </div>
   );

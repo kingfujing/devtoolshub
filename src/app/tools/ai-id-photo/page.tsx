@@ -249,6 +249,50 @@ export default function AIPhotoTool() {
         </p>
       </div>
 
+      
+      {/* About This Tool */}
+      <section className="mt-12 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">About This Tool</h2>
+        <div className="space-y-3 text-[#94a3b8] text-sm leading-relaxed">
+          <p>Creating professional ID photos usually requires a photo studio or expensive software. This free AI-powered ID photo maker removes backgrounds and generates standard-size photos (1-inch, 2-inch) entirely in your browser — no uploads, no servers, no fees.</p>
+          <p>Perfect for job applications, exam registrations, visa applications, passport photos, and social media profiles. The AI background removal runs locally using ONNX Runtime Web, meaning your photo never leaves your device for maximum privacy.</p>
+          <p>Simply upload any photo with a person, choose your desired size (1-inch, 2-inch, or custom), and download the result. The tool handles hair details, edges, and complex backgrounds with impressive accuracy — all for free, all in your browser.</p>
+        </div>
+      </section>
+
+      <section className="mt-10 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+            <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+              <span>Is my photo uploaded to a server?</span>
+              <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+              No. The AI background removal runs entirely in your browser using ONNX Runtime Web. Your photo never leaves your device.
+            </div>
+          </details>
+          <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+            <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+              <span>What photo sizes are available?</span>
+              <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+              Standard sizes: 1-inch (25x35mm) for ID cards, 2-inch (35x53mm) for documents, plus a custom size option.
+            </div>
+          </details>
+          <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+            <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+              <span>Does it work on mobile?</span>
+              <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+              Yes. The tool works in any modern browser on desktop, tablet, or phone. All AI processing is done client-side.
+            </div>
+          </details>
+        </div>
+      </section>
+
       <AdSlot className="mt-8" />
     </div>
   );

@@ -214,6 +214,50 @@ export default function JwtDecoderPage() {
         </p>
       </div>
 
+      
+      {/* About This Tool */}
+      <section className="mt-12 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">About This Tool</h2>
+        <div className="space-y-3 text-[#94a3b8] text-sm leading-relaxed">
+          <p>JSON Web Tokens (JWT) are widely used for authentication and information exchange in modern web applications. This free online JWT decoder lets you inspect the contents of any JWT token — header, payload, and signature — without sending your token to any server.</p>
+          <p>Use this tool to debug authentication flows during development, verify JWT claims like issuer (iss), subject (sub), and expiration (exp), check if a token has expired, and understand the structure of JWT tokens for learning or troubleshooting.</p>
+          <p>The decoder automatically parses all three parts of the JWT, detects when the token has expired (with visual indicators), and includes a sample token so you can try the tool immediately. All decoding is done client-side — your tokens never leave your browser.</p>
+        </div>
+      </section>
+
+      <section className="mt-10 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+            <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+              <span>Can I verify the JWT signature?</span>
+              <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+              This tool decodes and displays the header and payload. Signature verification requires the signing secret, which this tool does not have for security reasons.
+            </div>
+          </details>
+          <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+            <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+              <span>Is it safe to paste my production JWT tokens?</span>
+              <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+              Yes. All decoding is done client-side — your token never leaves your browser. No server requests are made.
+            </div>
+          </details>
+          <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+            <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+              <span>What does 'exp' mean?</span>
+              <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+              exp (expiration time) is a standard JWT claim. The tool automatically checks if the token has expired and shows a visual indicator (green for valid, red for expired).
+            </div>
+          </details>
+        </div>
+      </section>
+
       <AdSlot className="mt-8" />
     </div>
   );

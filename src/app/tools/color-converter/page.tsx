@@ -286,6 +286,50 @@ export default function ColorConverterPage() {
         </p>
       </div>
 
+      
+      {/* About This Tool */}
+      <section className="mt-12 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">About This Tool</h2>
+        <div className="space-y-3 text-[#94a3b8] text-sm leading-relaxed">
+          <p>Color conversion between HEX, RGB, and HSL formats is a daily task for frontend developers and designers. This free online color converter provides instant, bidirectional conversion with a live color preview so you can see exactly what you're working with.</p>
+          <p>Use this tool to convert Tailwind CSS colors (like <code>#3b82f6</code>) to RGB for use in Canvas API or SVG filters, generate HSL values for CSS color manipulation, ensure color consistency across different CSS color formats, and preview colors before committing to a design.</p>
+          <p>The converter supports all standard CSS color formats: HEX with 3 or 6 digits (<code>#f60</code> or <code>#ff6600</code>), RGB functional notation (<code>rgb(255,102,0)</code>), and HSL (<code>hsl(24,100%,50%)</code>). The live color preview updates instantly as you type.</p>
+        </div>
+      </section>
+
+      <section className="mt-10 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+            <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+              <span>What color formats are supported?</span>
+              <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+              HEX (3 or 6 digits like #f60 or #ff6600), RGB (rgb(255,102,0)), and HSL (hsl(24,100%,50%)). The tool auto-detects which format you paste.
+            </div>
+          </details>
+          <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+            <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+              <span>Can I copy individual color values?</span>
+              <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+              Yes. Each output format has its own copy button, so you can copy just the format you need for your CSS or code.
+            </div>
+          </details>
+          <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+            <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+              <span>How accurate is the color preview?</span>
+              <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+              The preview uses the actual computed color from your input — it is pixel-perfect and updates in real-time as you type.
+            </div>
+          </details>
+        </div>
+      </section>
+
       <AdSlot className="mt-8" />
     </div>
   );

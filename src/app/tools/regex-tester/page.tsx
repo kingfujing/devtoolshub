@@ -215,6 +215,50 @@ export default function RegexTesterPage() {
         <p className="text-xs text-[#64748b]">💡 Real-time matching &middot; Supports named groups (?&lt;name&gt;) &middot; Data is processed locally in your browser</p>
       </div>
 
+      
+      {/* About This Tool */}
+      <section className="mt-12 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">About This Tool</h2>
+        <div className="space-y-3 text-[#94a3b8] text-sm leading-relaxed">
+          <p>Regular expressions are powerful pattern-matching tools used for text validation, search, and replacement. This free online regex tester provides real-time matching with live highlighting — type your pattern and see results instantly, no button clicking needed.</p>
+          <p>Use this tool to debug complex regex patterns before deploying them in production code, learn how different regex flags (global, case-insensitive, multiline, dotall) affect matching, test named capture groups, and experiment with Unicode property escapes.</p>
+          <p>It supports all major regex flags (g, i, m, s, u, y), real-time match highlighting with color-coded captures, and handles everything from simple email validation to complex multiline patterns. The debounced input ensures smooth performance even with large test strings.</p>
+        </div>
+      </section>
+
+      <section className="mt-10 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+            <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+              <span>Why is my regex not matching?</span>
+              <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+              Check the flags: 'g' for global, 'i' for case-insensitive, 'm' for multiline. Common mistakes include missing the global flag or forgetting to escape special characters.
+            </div>
+          </details>
+          <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+            <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+              <span>What regex engine does this use?</span>
+              <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+              It uses the JavaScript RegExp engine, which supports most modern regex features including named capture groups, lookahead/lookbehind, and Unicode property escapes.
+            </div>
+          </details>
+          <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+            <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+              <span>Is this safe for sensitive data?</span>
+              <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+              Yes. All regex matching is done locally in your browser. Your patterns and test strings never leave your device.
+            </div>
+          </details>
+        </div>
+      </section>
+
       <AdSlot className="mt-8" />
     </div>
   );
