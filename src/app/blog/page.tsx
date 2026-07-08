@@ -14,6 +14,15 @@ export const metadata: Metadata = {
 
 const ARTICLES = [
   {
+    title: "5 Developer Tools That Respect Your Privacy",
+    desc: "Discover privacy-first developer tools that run entirely in your browser — no server uploads, no data collection, no tracking.",
+    href: "/blog/privacy-first-dev-tools",
+    tag: "Productivity",
+    date: "Jul 8, 2026",
+    readTime: "6 min",
+    color: "from-cyan-500 to-blue-500",
+  },
+  {
     title: "UUID v4 vs UUID v7: Which One Should You Use?",
     desc: "Compare random vs time-ordered UUIDs, database index performance, and when to choose each version for your project.",
     href: "/blog/uuid-v4-vs-v7",
