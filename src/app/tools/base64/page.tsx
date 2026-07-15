@@ -172,6 +172,36 @@ export default function Base64Page() {
         </div>
       </section>
 
+
+      <section className="mt-10 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">You Might Also Need</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <a
+            href="/tools/json-formatter"
+            className="block p-4 rounded-lg bg-[#1e293b] border border-[#334155] hover:border-blue-500/30 transition-colors"
+          >
+            <span className="text-sm text-white font-medium">JSON Formatter</span>
+            <span className="block text-xs text-[#3b82f6] mt-1">Use Now →</span>
+          </a>
+          <a
+            href="/tools/url-encoder"
+            className="block p-4 rounded-lg bg-[#1e293b] border border-[#334155] hover:border-blue-500/30 transition-colors"
+          >
+            <span className="text-sm text-white font-medium">URL Encoder / Decoder</span>
+            <span className="block text-xs text-[#3b82f6] mt-1">Use Now →</span>
+          </a>
+          <a
+            href="/tools/jwt-decoder"
+            className="block p-4 rounded-lg bg-[#1e293b] border border-[#334155] hover:border-blue-500/30 transition-colors"
+          >
+            <span className="text-sm text-white font-medium">JWT Decoder</span>
+            <span className="block text-xs text-[#3b82f6] mt-1">Use Now →</span>
+          </a>
+        </div>
+      </section>
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: '{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is my data safe?", "acceptedAnswer": {"@type": "Answer", "text": "Absolutely. All encoding and decoding is done client-side. Nothing is uploaded."}}, {"@type": "Question", "name": "Does it support Chinese characters?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The tool handles Chinese, Japanese, Arabic, emoji, and any Unicode characters."}}, {"@type": "Question", "name": "What is Base64 commonly used for?", "acceptedAnswer": {"@type": "Answer", "text": "Common uses: embedding images as data URIs, encoding binary data in JSON APIs, JWT token parts."}}]}'}} />
+
       <AdSlot className="mt-8" />
     </div>
   );

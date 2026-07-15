@@ -3,6 +3,69 @@ import AdSlot from "@/components/AdSlot";
 
 const ARTICLES = [
   {
+    title: "SQL Query Cheat Sheet for Developers",
+    desc: "Essential SQL query reference. SELECT, JOIN, GROUP BY, window functions, subqueries, and query optimization tips for daily development.",
+    href: "/blog/sql-query-cheat-sheet",
+    tag: "Cheat Sheet",
+    date: "Jul 15, 2026",
+    readTime: "10 min",
+    color: "from-blue-500 to-cyan-500",
+  },
+  {
+    title: "JavaScript Array Methods Cheat Sheet",
+    desc: "Complete JavaScript array methods reference with examples. From map() and filter() to flatMap() and toSorted() — every ES6+ method explained.",
+    href: "/blog/javascript-array-methods-cheat-sheet",
+    tag: "Cheat Sheet",
+    date: "Jul 15, 2026",
+    readTime: "10 min",
+    color: "from-yellow-500 to-orange-500",
+  },
+  {
+    title: "HTML Entities Reference: Complete List of Escape Codes",
+    desc: "Complete HTML entities reference with escape codes. Find common symbols, special characters, currency signs, and mathematical operators.",
+    href: "/blog/html-entities-reference",
+    tag: "Reference",
+    date: "Jul 15, 2026",
+    readTime: "8 min",
+    color: "from-purple-500 to-pink-500",
+  },
+  {
+    title: "HTTP Status Codes Cheat Sheet: Every Developer Should Know",
+    desc: "Complete HTTP status code reference. Every response code explained — 1xx informational, 2xx success, 3xx redirect, 4xx client error, 5xx server error.",
+    href: "/blog/http-status-codes-cheat-sheet",
+    tag: "Cheat Sheet",
+    date: "Jul 15, 2026",
+    readTime: "8 min",
+    color: "from-green-500 to-emerald-500",
+  },
+  {
+    title: "Git Commands Cheat Sheet: From Beginner to Advanced",
+    desc: "Essential Git commands reference for daily development. From git init to interactive rebase — commands, options, and practical examples.",
+    href: "/blog/git-commands-cheat-sheet",
+    tag: "Cheat Sheet",
+    date: "Jul 15, 2026",
+    readTime: "7 min",
+    color: "from-rose-500 to-pink-500",
+  },
+  {
+    title: "CSS Units Cheat Sheet: px, em, rem, vw, vh and Beyond",
+    desc: "Complete CSS units reference — absolute vs relative, viewport units, calc(), and when to use each. Includes responsive design patterns.",
+    href: "/blog/css-units-cheat-sheet",
+    tag: "Cheat Sheet",
+    date: "Jul 15, 2026",
+    readTime: "7 min",
+    color: "from-cyan-500 to-blue-500",
+  },
+  {
+    title: "Cron Expression Guide: Every Schedule Pattern Explained",
+    desc: "Master cron expressions with this complete guide. Syntax, special strings, 25+ common schedule examples, troubleshooting, and cloud-specific formats.",
+    href: "/blog/cron-expression-guide",
+    tag: "Guide",
+    date: "Jul 15, 2026",
+    readTime: "6 min",
+    color: "from-amber-500 to-red-500",
+  },
+  {
     title: "5 Developer Tools That Respect Your Privacy",
     desc: "Discover privacy-first developer tools that run entirely in your browser — no server uploads, no data collection, no tracking.",
     href: "/blog/privacy-first-dev-tools",
@@ -156,6 +219,33 @@ export default function HomePage() {
           Fast, secure, and private — every tool runs entirely in your browser.
           Your data never touches any server.
         </p>
+      </section>
+
+      {/* Features */}
+      <section className="mb-16 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="p-6 rounded-xl bg-[#1e293b] border border-[#334155] text-center">
+            <div className="text-3xl mb-3">🔒</div>
+            <h3 className="text-white font-semibold text-sm mb-2">100% Privacy First</h3>
+            <p className="text-[#94a3b8] text-xs leading-relaxed">
+              All tools run client-side. Your data never leaves your browser — no servers, no storage, no tracking.
+            </p>
+          </div>
+          <div className="p-6 rounded-xl bg-[#1e293b] border border-[#334155] text-center">
+            <div className="text-3xl mb-3">⚡</div>
+            <h3 className="text-white font-semibold text-sm mb-2">Fast & Lightweight</h3>
+            <p className="text-[#94a3b8] text-xs leading-relaxed">
+              Built with Next.js and deployed on Vercel&apos;s global edge network. No sign-ups, no bloat, instant loading.
+            </p>
+          </div>
+          <div className="p-6 rounded-xl bg-[#1e293b] border border-[#334155] text-center">
+            <div className="text-3xl mb-3">🆓</div>
+            <h3 className="text-white font-semibold text-sm mb-2">Free Forever</h3>
+            <p className="text-[#94a3b8] text-xs leading-relaxed">
+              No paywalls, no premium tiers, no hidden costs. Every tool is completely free to use, forever.
+            </p>
+          </div>
+        </div>
       </section>
 
       {/* Ad */}

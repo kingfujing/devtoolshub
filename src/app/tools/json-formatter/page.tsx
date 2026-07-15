@@ -165,6 +165,36 @@ export default function JsonFormatterPage() {
         </div>
       </section>
 
+
+      <section className="mt-10 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">You Might Also Need</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <a
+            href="/tools/base64"
+            className="block p-4 rounded-lg bg-[#1e293b] border border-[#334155] hover:border-blue-500/30 transition-colors"
+          >
+            <span className="text-sm text-white font-medium">Base64 Encode / Decode</span>
+            <span className="block text-xs text-[#3b82f6] mt-1">Use Now →</span>
+          </a>
+          <a
+            href="/tools/regex-tester"
+            className="block p-4 rounded-lg bg-[#1e293b] border border-[#334155] hover:border-blue-500/30 transition-colors"
+          >
+            <span className="text-sm text-white font-medium">Regex Tester</span>
+            <span className="block text-xs text-[#3b82f6] mt-1">Use Now →</span>
+          </a>
+          <a
+            href="/tools/url-encoder"
+            className="block p-4 rounded-lg bg-[#1e293b] border border-[#334155] hover:border-blue-500/30 transition-colors"
+          >
+            <span className="text-sm text-white font-medium">URL Encoder / Decoder</span>
+            <span className="block text-xs text-[#3b82f6] mt-1">Use Now →</span>
+          </a>
+        </div>
+      </section>
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: '{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is my JSON data sent to a server?", "acceptedAnswer": {"@type": "Answer", "text": "No. All JSON processing is done entirely in your browser. Your data never leaves your device."}}, {"@type": "Question", "name": "What indentation options are available?", "acceptedAnswer": {"@type": "Answer", "text": "You can choose between 2 spaces, 4 spaces, 1 space, or minified (0 spaces)."}}, {"@type": "Question", "name": "What happens if my JSON is invalid?", "acceptedAnswer": {"@type": "Answer", "text": "The tool shows a clear error message describing the parsing error and where it occurred."}}]}'}} />
+
       <AdSlot className="mt-8" />
     </div>
   );

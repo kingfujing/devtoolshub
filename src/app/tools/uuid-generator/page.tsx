@@ -158,6 +158,36 @@ export default function UuidGeneratorPage() {
         </div>
       </section>
 
+
+      <section className="mt-10 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">You Might Also Need</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <a
+            href="/tools/jwt-decoder"
+            className="block p-4 rounded-lg bg-[#1e293b] border border-[#334155] hover:border-blue-500/30 transition-colors"
+          >
+            <span className="text-sm text-white font-medium">JWT Decoder</span>
+            <span className="block text-xs text-[#3b82f6] mt-1">Use Now →</span>
+          </a>
+          <a
+            href="/tools/timestamp"
+            className="block p-4 rounded-lg bg-[#1e293b] border border-[#334155] hover:border-blue-500/30 transition-colors"
+          >
+            <span className="text-sm text-white font-medium">Timestamp Converter</span>
+            <span className="block text-xs text-[#3b82f6] mt-1">Use Now →</span>
+          </a>
+          <a
+            href="/tools/base64"
+            className="block p-4 rounded-lg bg-[#1e293b] border border-[#334155] hover:border-blue-500/30 transition-colors"
+          >
+            <span className="text-sm text-white font-medium">Base64 Encode / Decode</span>
+            <span className="block text-xs text-[#3b82f6] mt-1">Use Now →</span>
+          </a>
+        </div>
+      </section>
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: '{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Are these truly random UUIDs?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Generated using crypto.randomUUID() - cryptographically secure."}}, {"@type": "Question", "name": "What is the difference between UUID v4 and v7?", "acceptedAnswer": {"@type": "Answer", "text": "UUID v4 is fully random. UUID v7 is time-ordered for better database index performance."}}, {"@type": "Question", "name": "How many UUIDs can I generate at once?", "acceptedAnswer": {"@type": "Answer", "text": "You can generate 1, 5, 10, 25, 50, or 100 UUIDs in a single batch."}}]}'}} />
+
       <AdSlot className="mt-8" />
     </div>
   );

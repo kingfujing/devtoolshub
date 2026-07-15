@@ -330,6 +330,36 @@ export default function ColorConverterPage() {
         </div>
       </section>
 
+
+      <section className="mt-10 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">You Might Also Need</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <a
+            href="/tools/json-formatter"
+            className="block p-4 rounded-lg bg-[#1e293b] border border-[#334155] hover:border-blue-500/30 transition-colors"
+          >
+            <span className="text-sm text-white font-medium">JSON Formatter</span>
+            <span className="block text-xs text-[#3b82f6] mt-1">Use Now →</span>
+          </a>
+          <a
+            href="/tools/timestamp"
+            className="block p-4 rounded-lg bg-[#1e293b] border border-[#334155] hover:border-blue-500/30 transition-colors"
+          >
+            <span className="text-sm text-white font-medium">Timestamp Converter</span>
+            <span className="block text-xs text-[#3b82f6] mt-1">Use Now →</span>
+          </a>
+          <a
+            href="/tools/ai-id-photo"
+            className="block p-4 rounded-lg bg-[#1e293b] border border-[#334155] hover:border-blue-500/30 transition-colors"
+          >
+            <span className="text-sm text-white font-medium">AI ID Photo Maker</span>
+            <span className="block text-xs text-[#3b82f6] mt-1">Use Now →</span>
+          </a>
+        </div>
+      </section>
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: '{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What color formats are supported?", "acceptedAnswer": {"@type": "Answer", "text": "HEX (3 or 6 digits), RGB (rgb(255,102,0)), and HSL (hsl(24,100%,50%)). Auto-detection."}}, {"@type": "Question", "name": "Can I copy individual color values?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Each output format has its own copy button."}}, {"@type": "Question", "name": "How accurate is the color preview?", "acceptedAnswer": {"@type": "Answer", "text": "Pixel-perfect real-time preview based on your input."}}]}'}} />
+
       <AdSlot className="mt-8" />
     </div>
   );

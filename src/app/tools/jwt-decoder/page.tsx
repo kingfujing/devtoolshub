@@ -258,6 +258,36 @@ export default function JwtDecoderPage() {
         </div>
       </section>
 
+
+      <section className="mt-10 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">You Might Also Need</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <a
+            href="/tools/base64"
+            className="block p-4 rounded-lg bg-[#1e293b] border border-[#334155] hover:border-blue-500/30 transition-colors"
+          >
+            <span className="text-sm text-white font-medium">Base64 Encode / Decode</span>
+            <span className="block text-xs text-[#3b82f6] mt-1">Use Now →</span>
+          </a>
+          <a
+            href="/tools/json-formatter"
+            className="block p-4 rounded-lg bg-[#1e293b] border border-[#334155] hover:border-blue-500/30 transition-colors"
+          >
+            <span className="text-sm text-white font-medium">JSON Formatter</span>
+            <span className="block text-xs text-[#3b82f6] mt-1">Use Now →</span>
+          </a>
+          <a
+            href="/tools/timestamp"
+            className="block p-4 rounded-lg bg-[#1e293b] border border-[#334155] hover:border-blue-500/30 transition-colors"
+          >
+            <span className="text-sm text-white font-medium">Timestamp Converter</span>
+            <span className="block text-xs text-[#3b82f6] mt-1">Use Now →</span>
+          </a>
+        </div>
+      </section>
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: '{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can I verify the JWT signature?", "acceptedAnswer": {"@type": "Answer", "text": "This tool decodes header and payload only. Signature verification requires the signing secret."}}, {"@type": "Question", "name": "Is it safe to paste my production JWT tokens?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. All decoding is done client-side. Your token never leaves your browser."}}, {"@type": "Question", "name": "What does \u0027exp\u0027 mean?", "acceptedAnswer": {"@type": "Answer", "text": "exp (expiration time) is a standard JWT claim. The tool shows a visual indicator for expiration status."}}]}'}} />
+
       <AdSlot className="mt-8" />
     </div>
   );
