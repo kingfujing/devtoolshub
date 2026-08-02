@@ -229,6 +229,108 @@ SELECT gen_random_uuid();  -- v4 (built-in, PostgreSQL 13+)`}</code></pre>
           It runs entirely in your browser — no server uploads, no data leaks.
         </p>
 
+        <h2 className="text-2xl font-bold text-white mt-10 mb-4">
+          Common Mistakes &amp; How to Avoid Them
+        </h2>
+        <ul className="list-disc pl-5 space-y-1.5">
+          <li>
+            <strong>Using UUID v4 as a primary key in write-heavy tables.</strong> Random inserts
+            fragment B-tree indexes and cause page splits and cache misses. Switch to v7 when
+            inserts dominate your workload.
+          </li>
+          <li>
+            <strong>Generating UUIDs with Math.random().</strong> It is not cryptographically
+            secure and can produce predictable values. Use{" "}
+            <code className="text-[#e2e8f0] bg-[#1e293b] px-1.5 py-0.5 rounded text-xs">crypto.randomUUID()</code>{" "}
+            or <code className="text-[#e2e8f0] bg-[#1e293b] px-1.5 py-0.5 rounded text-xs">crypto.getRandomValues()</code>.
+          </li>
+          <li>
+            <strong>Storing UUIDs as VARCHAR(36).</strong> Text storage nearly doubles the size and
+            slows down indexes. Use the database native uuid type — PostgreSQL stores it in 16 bytes.
+          </li>
+          <li>
+            <strong>Assuming v7 has the same collision resistance as v4.</strong> v7 keeps only 74
+            random bits, so at extreme scale collisions become theoretically reachable. Fine for
+            normal workloads, but know the difference.
+          </li>
+          <li>
+            <strong>Using v7 for public identifiers.</strong> The embedded timestamp reveals
+            creation time. For API tokens and session IDs, prefer v4.
+          </li>
+        </ul>
+        <pre className="bg-[#1e293b] border border-[#334155] rounded-lg p-4 text-sm overflow-x-auto"><code>{`-- PostgreSQL: use the native uuid type, not varchar(36)
+CREATE TABLE users (
+  id uuid PRIMARY KEY DEFAULT uuid_generate_v7(),
+  created_at timestamptz DEFAULT now()
+);`}</code></pre>
+
+        <section className="mt-10 pt-8 border-t border-[#334155]">
+          <h2 className="text-2xl font-bold text-white mb-4">Frequently Asked Questions</h2>
+          <div className="space-y-4">
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Can UUIDs guarantee uniqueness?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                No UUID version offers a mathematical guarantee, but collision odds are negligible
+                in practice. UUID v4 carries 122 random bits while v7 carries 74, so v4 is slightly
+                more collision-resistant — both are safe for billions of rows.
+              </div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Which is faster to generate, UUID v4 or v7?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                Both generate in microseconds. v7 simply prepends a 48-bit millisecond timestamp to
+                random data, so CPU cost is nearly identical. The meaningful performance gap is in
+                database inserts and index maintenance, not generation speed.
+              </div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Can UUID v7 be sorted by time?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                Yes — the timestamp occupies the most significant bits, so lexicographic order
+                equals chronological order. UUIDs created within the same millisecond fall back to
+                their random bits, so strict ordering inside a single millisecond is not guaranteed.
+              </div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Should I use UUIDs or auto-increment IDs for primary keys?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                Auto-increment IDs give the fastest inserts and smallest indexes, but they leak row
+                counts and break across distributed systems. UUID v7 is the sweet spot for
+                write-heavy databases, v4 fits when unpredictability matters, and auto-increment
+                remains fine for small single-server apps.
+              </div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Do UUIDs leak sensitive information?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                v4 is purely random and leaks nothing. v7 encodes creation time, so it reveals
+                approximate timestamps — the same behavior as auto-increment IDs. For public-facing
+                identifiers that must stay unpredictable, prefer v4.
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: '{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can UUIDs guarantee uniqueness?","acceptedAnswer":{"@type":"Answer","text":"No UUID version can mathematically guarantee uniqueness, but collision probabilities are negligible. UUID v4 has 122 random bits while v7 has 74 random bits, so v4 has slightly stronger collision resistance."}},{"@type":"Question","name":"Which is faster to generate, UUID v4 or v7?","acceptedAnswer":{"@type":"Answer","text":"Both are generated in microseconds. UUID v7 only adds a timestamp computation, so generation speed is essentially identical. The real difference is database index performance, not generation speed."}},{"@type":"Question","name":"Can UUID v7 be sorted by time?","acceptedAnswer":{"@type":"Answer","text":"Yes. UUID v7 puts a 48-bit millisecond timestamp in the most significant bits, so lexicographic order equals chronological order. UUIDs created in the same millisecond fall back to their random bits."}},{"@type":"Question","name":"Should I use UUIDs or auto-increment IDs for primary keys?","acceptedAnswer":{"@type":"Answer","text":"Auto-increment IDs are fastest for inserts but leak row counts and do not work across distributed systems. Use UUID v7 for write-heavy databases, UUID v4 when unpredictability matters, and auto-increment for small single-server apps."}},{"@type":"Question","name":"Do UUIDs leak sensitive information?","acceptedAnswer":{"@type":"Answer","text":"UUID v4 is purely random and leaks nothing. UUID v7 encodes the creation timestamp, so it reveals approximate creation time just like an auto-increment ID. Use v4 for public identifiers that must stay unpredictable."}}]}'}}
+        />
+
         <div className="border-t border-[#334155] pt-6 mt-8">
           <p className="text-xs text-[#64748b]">
             <strong>Related Tools:</strong>{" "}

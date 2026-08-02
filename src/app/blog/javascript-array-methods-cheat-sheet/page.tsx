@@ -696,6 +696,157 @@ const sorted = arr.toSorted((a, b) => a - b);
           </li>
         </ul>
 
+        <h2 className="text-2xl font-bold text-white mt-10 mb-4">
+          Common Mistakes &amp; How to Avoid Them
+        </h2>
+        <p>
+          Even experienced developers trip over these array method gotchas. Here are the five
+          most common pitfalls and how to dodge them.
+        </p>
+
+        <h3 className="text-xl font-semibold text-white mt-8 mb-3">
+          1. Forgetting That sort() Sorts Strings by Default
+        </h3>
+        <p>
+          <code className="text-xs">sort()</code> converts every element to a string before
+          comparing, so <code className="text-xs">[10, 2, 1].sort()</code> returns{" "}
+          <code className="text-xs">[1, 10, 2]</code> — not the numeric order you expected.
+          Always pass a comparator for numbers:
+        </p>
+        <pre className="bg-[#1e293b] border border-[#334155] rounded-lg p-4 text-sm overflow-x-auto"><code>{`[10, 2, 1].sort((a, b) => a - b); // [1, 2, 10]`}</code></pre>
+
+        <h3 className="text-xl font-semibold text-white mt-8 mb-3">
+          2. Mutating an Array While Iterating Over It
+        </h3>
+        <p>
+          Calling <code className="text-xs">splice()</code> inside a{" "}
+          <code className="text-xs">forEach()</code> loop shifts the indexes of every remaining
+          element, which causes items to be silently skipped. Instead of removing elements in
+          place, build a new array with <code className="text-xs">filter()</code> — it is safer
+          and easier to reason about.
+        </p>
+
+        <h3 className="text-xl font-semibold text-white mt-8 mb-3">
+          3. Using map() for Side Effects
+        </h3>
+        <p>
+          <code className="text-xs">map()</code> exists to transform data and always returns a
+          new array. If you only need to run side effects like logging or DOM updates, use{" "}
+          <code className="text-xs">forEach()</code> instead. Calling{" "}
+          <code className="text-xs">map()</code> and discarding its return value allocates an
+          unused array and signals the wrong intent to readers.
+        </p>
+
+        <h3 className="text-xl font-semibold text-white mt-8 mb-3">
+          4. filter(Boolean) Silently Drops Falsy Values
+        </h3>
+        <p>
+          <code className="text-xs">filter(Boolean)</code> is a popular one-liner, but it also
+          removes <code className="text-xs">0</code>, <code className="text-xs">""</code>, and{" "}
+          <code className="text-xs">NaN</code>. When those values are meaningful data, use an
+          explicit predicate such as{" "}
+          <code className="text-xs">x =&gt; x !== null &amp;&amp; x !== undefined</code>.
+        </p>
+
+        <h3 className="text-xl font-semibold text-white mt-8 mb-3">
+          5. map() Skips Holes in Sparse Arrays
+        </h3>
+        <p>
+          <code className="text-xs">Array(3).map(x =&gt; 1)</code> returns an array of empty
+          holes, not <code className="text-xs">[1, 1, 1]</code>. Create a dense array first with{" "}
+          <code className="text-xs">{`Array.from({ length: 3 })`}</code> or{" "}
+          <code className="text-xs">[...Array(3)]</code> before mapping over it.
+        </p>
+
+        <section className="mt-10 pt-8 border-t border-[#334155]">
+          <h2 className="text-2xl font-bold text-white mb-4">Frequently Asked Questions</h2>
+          <div className="space-y-4">
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>What is the difference between map() and forEach()?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                <code className="text-xs">map()</code> builds and returns a new array with the
+                same length, transformed by the callback. <code className="text-xs">forEach()</code>{" "}
+                runs the callback for side effects and returns <code className="text-xs">undefined</code>.
+                Use <code className="text-xs">map()</code> when you need the transformed result,
+                and <code className="text-xs">forEach()</code> when you only need to perform an
+                action. Neither can be stopped early with <code className="text-xs">break</code> —
+                use a <code className="text-xs">for...of</code> loop if you need early exit.
+              </div>
+            </details>
+
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>How do I remove duplicates from an array?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                The simplest approach is to spread a <code className="text-xs">Set</code>:{" "}
+                <code className="text-xs">{`[...new Set(arr)]`}</code>. This preserves insertion
+                order and works for primitives. For arrays of objects, dedupe by a key with a{" "}
+                <code className="text-xs">Map</code> or a <code className="text-xs">Set</code> of
+                ids instead of relying on reference equality.
+              </div>
+            </details>
+
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>What is the difference between slice() and splice()?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                <code className="text-xs">slice(start, end)</code> returns a new array containing
+                a copy of a portion of the original, without modifying it.{" "}
+                <code className="text-xs">splice(start, deleteCount, ...items)</code> removes or
+                replaces elements in the original array and returns the removed elements.
+                Remember: <strong className="text-white">slice copies, splice mutates</strong>.
+                If you need the non-mutating version of splice, use{" "}
+                <code className="text-xs">toSpliced()</code>.
+              </div>
+            </details>
+
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Why does sort() return an unexpected order for numbers?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                The default <code className="text-xs">sort()</code> converts elements to strings
+                and compares them lexicographically, so <code className="text-xs">10</code> comes
+                before <code className="text-xs">2</code>. Pass a numeric comparator like{" "}
+                <code className="text-xs">(a, b) =&gt; a - b</code> to sort numbers correctly, or
+                use <code className="text-xs">toSorted()</code> when you want to keep the original
+                array unchanged.
+              </div>
+            </details>
+
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>How do I check if an array contains a value?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                Use <code className="text-xs">includes(value)</code> for a simple boolean check,
+                or <code className="text-xs">indexOf(value)</code> when you also need the position.
+                Both use strict equality, so neither can find <code className="text-xs">NaN</code> —
+                use <code className="text-xs">some(x =&gt; Number.isNaN(x))</code> for that case,
+                and <code className="text-xs">find()</code> with a predicate when searching for
+                objects by property.
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html:
+              '{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the difference between map() and forEach()?","acceptedAnswer":{"@type":"Answer","text":"map() returns a new array with the same length, transformed by the callback. forEach() runs the callback for side effects and returns undefined. Use map() when you need the transformed result and forEach() when you only need side effects."}},{"@type":"Question","name":"How do I remove duplicates from an array?","acceptedAnswer":{"@type":"Answer","text":"The simplest way is to spread a Set: [...new Set(arr)]. This preserves insertion order and works for primitives. For arrays of objects, dedupe by a key with a Map or a Set of ids."}},{"@type":"Question","name":"What is the difference between slice() and splice()?","acceptedAnswer":{"@type":"Answer","text":"slice(start, end) returns a new array that copies a portion of the original without modifying it. splice(start, deleteCount, items) removes or replaces elements in the original array and returns the removed elements. slice copies, splice mutates."}},{"@type":"Question","name":"Why does sort() return an unexpected order for numbers?","acceptedAnswer":{"@type":"Answer","text":"The default sort() converts elements to strings and compares them lexicographically, so 10 comes before 2. Pass a numeric comparator such as (a, b) => a - b to sort numbers correctly, or use toSorted() to keep the original array unchanged."}},{"@type":"Question","name":"How do I check if an array contains a value?","acceptedAnswer":{"@type":"Answer","text":"Use includes(value) for a boolean check, or indexOf(value) when you also need the position. Both use strict equality, so they cannot find NaN. Use some(x => Number.isNaN(x)) for NaN, and find() with a predicate for objects."}}]}',
+          }}
+        />
+
         <div className="bg-[#1e293b] border border-[#334155] rounded-lg p-4">
           <p className="text-xs text-[#94a3b8] mb-1">🔍 Related Resources</p>
           <p className="text-sm">

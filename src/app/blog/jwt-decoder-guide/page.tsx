@@ -213,6 +213,66 @@ export default function JwtDecoderGuide() {
           to inspect tokens quickly — it runs entirely in your browser, so your tokens stay private.
         </p>
 
+        {/* Practical Tips */}
+        <h2>Practical Tips for Debugging JWTs</h2>
+        <ul className="list-disc pl-5 space-y-1.5">
+          <li><strong>Check exp with a timestamp converter</strong> — a token that looks valid often fails simply because it expired</li>
+          <li><strong>Decode, then verify</strong> — decoding reveals the claims, but only server-side signature verification proves authenticity</li>
+          <li><strong>Inspect the alg header first</strong> — an unexpected algorithm (like <code className="text-xs">none</code>) is a red flag for tampering</li>
+          <li><strong>Keep tokens out of localStorage</strong> — prefer HttpOnly cookies so XSS cannot exfiltrate them</li>
+        </ul>
+        <pre className="bg-[#1e293b] border border-[#334155] rounded-lg p-4 text-sm overflow-x-auto"><code>{`// Decode the JWT payload in the browser console
+const payload = token.split(".")[1];
+const json = JSON.parse(
+  atob(payload.replace(/-/g, "+").replace(/_/g, "/"))
+);
+console.log(json);`}</code></pre>
+
+        {/* FAQ */}
+        <section className="mt-10 pt-8 border-t border-[#334155]">
+          <h2 className="text-2xl font-bold text-white mb-4">Frequently Asked Questions</h2>
+          <div className="space-y-4">
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Is JWT safe? Can I store sensitive information in it?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">JWT payloads are only encoded, not encrypted — anyone can read them. Never put passwords, credit card numbers, or other secrets inside a token. For confidential data, use an encrypted JWT (JWE) or keep the data server-side and reference it by ID.</div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>What happens when a JWT expires?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">Once the exp claim passes, the server rejects the token. The client then needs a new one — typically by exchanging a refresh token for a fresh access token, or by sending the user through the login flow again.</div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>How do I verify a JWT signature?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">Verification requires the server's secret key for HS256 or public key for RS256, so it must happen server-side. Use a well-tested library like jsonwebtoken (Node.js) or PyJWT (Python). Simply decoding a token never verifies anything.</div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>What is the difference between JWT and server sessions?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">Sessions keep state on the server and send the client only an opaque session ID. JWTs are self-contained and stateless — the server validates the signature without storing anything. JWTs scale horizontally with ease but cannot be revoked before expiry without extra infrastructure like a denylist.</div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Can I decode a JWT without the secret key?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">Yes. The header and payload are plain Base64url, so anyone can decode them without any key. The secret is only needed to verify the signature, which is why you should never trust decoded claims for authorization without server-side verification.</div>
+            </details>
+          </div>
+        </section>
+
+        {/* FAQ Schema JSON-LD */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: '{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is JWT safe? Can I store sensitive information in it?","acceptedAnswer":{"@type":"Answer","text":"JWT payloads are only encoded, not encrypted — anyone can read them. Never put passwords, credit card numbers, or other secrets inside a token. For confidential data, use an encrypted JWT (JWE) or keep the data server-side and reference it by ID."}},{"@type":"Question","name":"What happens when a JWT expires?","acceptedAnswer":{"@type":"Answer","text":"Once the exp claim passes, the server rejects the token. The client then needs a new one — typically by exchanging a refresh token for a fresh access token, or by sending the user through the login flow again."}},{"@type":"Question","name":"How do I verify a JWT signature?","acceptedAnswer":{"@type":"Answer","text":"Verification requires the server secret key for HS256 or public key for RS256, so it must happen server-side. Use a well-tested library like jsonwebtoken in Node.js or PyJWT in Python. Simply decoding a token never verifies anything."}},{"@type":"Question","name":"What is the difference between JWT and server sessions?","acceptedAnswer":{"@type":"Answer","text":"Sessions keep state on the server and send the client only an opaque session ID. JWTs are self-contained and stateless — the server validates the signature without storing anything. JWTs scale horizontally with ease but cannot be revoked before expiry without extra infrastructure like a denylist."}},{"@type":"Question","name":"Can I decode a JWT without the secret key?","acceptedAnswer":{"@type":"Answer","text":"Yes. The header and payload are plain Base64url, so anyone can decode them without any key. The secret is only needed to verify the signature, which is why you should never trust decoded claims for authorization without server-side verification."}}]}'}} />
+
         <div className="border-t border-[#334155] pt-6 mt-8">
           <p className="text-xs text-[#64748b]">
             <strong>Related Tools:</strong>{" "}

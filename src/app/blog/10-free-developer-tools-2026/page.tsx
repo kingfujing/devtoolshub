@@ -198,6 +198,67 @@ export default function BlogPost() {
           developer utilities. All 8 available tools are free, fast, and built by developers for
           developers.
         </p>
+
+        {/* Practical Tips */}
+        <h2 className="text-2xl font-bold text-white mt-10 mb-4">
+          Practical Tips for Building Your Free Tool Stack
+        </h2>
+        <ul className="list-disc pl-6 space-y-2 text-[#cbd5e1]">
+          <li>
+            <strong className="text-white">Bookmark tools instead of searching</strong> — a saved
+            bookmark saves 30 seconds per lookup, which adds up to hours over a year
+          </li>
+          <li>
+            <strong className="text-white">Verify the privacy story first</strong> — before pasting
+            sensitive data, confirm the tool runs client-side and never uploads to a server
+          </li>
+          <li>
+            <strong className="text-white">Chain tools together</strong> — decode a Base64 payload,
+            pretty-print the resulting JSON, then test your regex against it in one workflow
+          </li>
+          <li>
+            <strong className="text-white">Keep a local fallback</strong> — once a tool page is
+            loaded it works offline, and your browser DevTools already cover the basics
+          </li>
+        </ul>
+
+        {/* FAQ */}
+        <section className="mt-10 pt-8 border-t border-[#334155]">
+          <h2 className="text-2xl font-bold text-white mb-4">Frequently Asked Questions</h2>
+          <div className="space-y-4">
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Are these tools really free? Are there hidden charges?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">Yes, all DevToolsHub tools are completely free with no accounts, subscriptions, or premium tiers. There are no hidden charges and no paywalls — the tools run entirely in your browser.</div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Is my data safe when I use these tools?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">Yes. Every tool runs 100% client-side in your browser. Your data never leaves your machine, is never uploaded to a server, and is never logged or stored.</div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Which tool is used the most?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">The JSON Formatter and Validator is the most popular tool, followed closely by the Base64 encoder/decoder. Both are essential for everyday API debugging.</div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Do I need an account or sign-up to use these tools?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">No. There are zero sign-ups, zero subscriptions, and zero tracking. Just open the page and start using the tool immediately.</div>
+            </details>
+          </div>
+        </section>
+
+        {/* FAQ Schema JSON-LD */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: '{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Are these tools really free? Are there hidden charges?","acceptedAnswer":{"@type":"Answer","text":"Yes, all DevToolsHub tools are completely free with no accounts, subscriptions, or premium tiers. There are no hidden charges and no paywalls — the tools run entirely in your browser."}},{"@type":"Question","name":"Is my data safe when I use these tools?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every tool runs 100 percent client-side in your browser. Your data never leaves your machine, is never uploaded to a server, and is never logged or stored."}},{"@type":"Question","name":"Which tool is used the most?","acceptedAnswer":{"@type":"Answer","text":"The JSON Formatter and Validator is the most popular tool, followed closely by the Base64 encoder and decoder. Both are essential for everyday API debugging."}},{"@type":"Question","name":"Do I need an account or sign-up to use these tools?","acceptedAnswer":{"@type":"Answer","text":"No. There are zero sign-ups, zero subscriptions, and zero tracking. Just open the page and start using the tool immediately."}}]}'}} />
       </div>
 
       {/* Footer */}

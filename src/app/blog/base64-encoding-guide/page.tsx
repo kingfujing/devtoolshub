@@ -189,6 +189,69 @@ decodeURIComponent(escape(atob("5L2g5aW95LiW55WM")));
           <code className="text-[#f472b6] bg-[#1e293b] px-1.5 py-0.5 rounded text-sm">=</code>, you will
           know exactly what it is — Base64, the universal binary-to-text bridge.
         </p>
+
+        {/* Practical Tips */}
+        <h2 className="text-2xl font-bold text-white mt-10 mb-4">
+          Practical Tips for Working with Base64
+        </h2>
+        <ul className="list-disc pl-6 space-y-2 text-[#cbd5e1]">
+          <li><strong className="text-white">Test for Unicode before using btoa()</strong> — if your string contains non-Latin characters, wrap it in the encodeURIComponent workaround or use a library</li>
+          <li><strong className="text-white">Watch the padding</strong> — Base64 output must be a multiple of 4 characters; missing <code className="text-[#f472b6] bg-[#1e293b] px-1.5 py-0.5 rounded text-sm">=</code> padding is the most common decode error</li>
+          <li><strong className="text-white">Avoid Base64 for large payloads</strong> — the 33% size increase hurts on big files; use binary transfer or gzip instead</li>
+          <li><strong className="text-white">Never encode secrets with Base64</strong> — it is reversible by anyone, so treat it as plain text, not protection</li>
+        </ul>
+        <pre className="bg-[#1e293b] p-4 rounded-lg text-sm overflow-x-auto text-[#e2e8f0]">
+{`// Safe Unicode encode in the browser
+btoa(unescape(encodeURIComponent("你好")));
+
+// Node.js equivalent
+Buffer.from("你好").toString("base64");`}
+        </pre>
+
+        {/* FAQ */}
+        <section className="mt-10 pt-8 border-t border-[#334155]">
+          <h2 className="text-2xl font-bold text-white mb-4">Frequently Asked Questions</h2>
+          <div className="space-y-4">
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Does Base64 encoding encrypt my data?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">No. Base64 is an encoding, not encryption. It simply converts binary data into ASCII text so it can travel through text-based protocols. Anyone can decode it back to the original data, so never rely on it to protect sensitive information.</div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Why is Base64 output about 33% longer than the input?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">Base64 packs every 3 bytes of input into 4 ASCII characters, and each character carries only 6 bits instead of 8. That works out to roughly 4/3 the original size, plus up to two padding characters at the end.</div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>What is the difference between standard Base64 and URL-safe Base64?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">Standard Base64 uses + and /, which can break URLs and filenames. URL-safe Base64 (Base64url) replaces them with - and _, and strips the trailing = padding. JWT tokens and many modern APIs use Base64url.</div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>How do I encode Chinese or other Unicode text?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">The browser btoa() function only handles Latin-1 characters, so it throws an error on Unicode input like 你好. Use the encodeURIComponent + unescape workaround, use Buffer in Node.js, or paste into a tool that handles Unicode automatically.</div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Can I use Base64 to hide passwords or API keys?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">No. Base64 provides zero security — decoding requires no key, so it offers no real protection. Store credentials with proper encryption at rest and HTTPS in transit, and never commit them to source control.</div>
+            </details>
+          </div>
+        </section>
+
+        {/* FAQ Schema JSON-LD */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: '{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Base64 encoding encrypt my data?","acceptedAnswer":{"@type":"Answer","text":"No. Base64 is an encoding, not encryption. It simply converts binary data into ASCII text so it can travel through text-based protocols. Anyone can decode it back to the original data, so never rely on it to protect sensitive information."}},{"@type":"Question","name":"Why is Base64 output about 33 percent longer than the input?","acceptedAnswer":{"@type":"Answer","text":"Base64 packs every 3 bytes of input into 4 ASCII characters, and each character carries only 6 bits instead of 8. That works out to roughly 4/3 the original size, plus up to two padding characters at the end."}},{"@type":"Question","name":"What is the difference between standard Base64 and URL-safe Base64?","acceptedAnswer":{"@type":"Answer","text":"Standard Base64 uses + and /, which can break URLs and filenames. URL-safe Base64 (Base64url) replaces them with - and _, and strips the trailing = padding. JWT tokens and many modern APIs use Base64url."}},{"@type":"Question","name":"How do I encode Chinese or other Unicode text?","acceptedAnswer":{"@type":"Answer","text":"The browser btoa() function only handles Latin-1 characters, so it throws an error on Unicode input. Use the encodeURIComponent and unescape workaround, use Buffer in Node.js, or paste into a tool that handles Unicode automatically."}},{"@type":"Question","name":"Can I use Base64 to hide passwords or API keys?","acceptedAnswer":{"@type":"Answer","text":"No. Base64 provides zero security. Decoding requires no key, so it offers no real protection. Store credentials with proper encryption at rest and HTTPS in transit, and never commit them to source control."}}]}'}} />
       </div>
 
       {/* Footer */}

@@ -4,11 +4,11 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Cron Expression Guide — DevToolsHub",
   description:
-    "Complete cron expression reference. Master cron syntax with examples, special strings, common schedules, and troubleshooting tips.",
+    "Complete cron expression reference. Master cron syntax with examples, special strings, common schedules, troubleshooting tips, common mistakes, and a developer FAQ.",
   openGraph: {
     title: "Cron Expression Guide: Complete Reference with Examples",
     description:
-      "Master cron job scheduling with this comprehensive guide. Covers syntax, special strings, common schedules, troubleshooting, timezone considerations, and real-world examples.",
+      "Master cron job scheduling with this comprehensive guide. Covers syntax, special strings, common schedules, troubleshooting, timezone considerations, common mistakes, FAQs, and real-world examples.",
     type: "article",
   },
 };
@@ -707,6 +707,140 @@ export default function CronExpressionGuide() {
 
 # Example: run at 10:15 AM every day
 0 15 10 * * ?`}</code></pre>
+
+        <h2 className="text-2xl font-bold text-white mt-10 mb-4">
+          Common Mistakes &amp; How to Avoid Them
+        </h2>
+        <p>
+          Most cron incidents aren&apos;t syntax errors — they&apos;re environment
+          mismatches between your shell and cron&apos;s minimal runtime. These are
+          the five that bite developers most often in production.
+        </p>
+        <ul className="list-disc pl-6 space-y-3">
+          <li>
+            <strong className="text-white">Assuming cron uses your local timezone.</strong>{" "}
+            Cron uses the <em>system</em> timezone, not your shell&apos;s{" "}
+            <code className="text-xs">TZ</code> or locale. Verify with{" "}
+            <code className="text-xs">timedatectl</code>. To force a zone, put{" "}
+            <code className="text-xs">CRON_TZ=America/New_York</code> at the top of your
+            crontab (Vixie cron), or schedule in UTC and convert.
+          </li>
+          <li>
+            <strong className="text-white">Using relative paths.</strong>{" "}
+            Cron&apos;s default <code className="text-xs">PATH</code> is minimal
+            (<code className="text-xs">/usr/bin:/bin</code>), so{" "}
+            <code className="text-xs">node</code>, <code className="text-xs">python3</code>,
+            and project binaries often aren&apos;t found. Use absolute paths to both the
+            interpreter and the script, or set{" "}
+            <code className="text-xs">PATH=/usr/local/bin:/usr/bin:/bin</code> at the top
+            of the crontab.
+          </li>
+          <li>
+            <strong className="text-white">Forgetting to escape <code className="text-xs">%</code>.</strong>{" "}
+            In a crontab, <code className="text-xs">%</code> is translated to a newline.
+            A command like <code className="text-xs">date +%Y-%m-%d</code> silently
+            breaks — write it as <code className="text-xs">date +\%Y-\%m-\%d</code>.
+          </li>
+          <li>
+            <strong className="text-white">Combining day-of-month and day-of-week.</strong>{" "}
+            The two fields are <em>OR&apos;d</em>, not AND&apos;d:{" "}
+            <code className="text-xs">0 0 1 * 1</code> runs on the 1st of the month
+            <em> and</em> every Monday — twice as often as intended. Use{" "}
+            <code className="text-xs">?</code> in Quartz-style schedulers, or split into
+            two separate jobs.
+          </li>
+          <li>
+            <strong className="text-white">Scripts that aren&apos;t executable.</strong>{" "}
+            If your script lacks <code className="text-xs">chmod +x</code> or a valid
+            shebang, cron fails silently — no email, no log entry. Always run{" "}
+            <code className="text-xs">chmod +x /path/to/script.sh</code> and test the
+            script manually before wiring it into cron.
+          </li>
+        </ul>
+
+        <section className="mt-10 pt-8 border-t border-[#334155]">
+          <h2 className="text-2xl font-bold text-white mb-4">Frequently Asked Questions</h2>
+          <div className="space-y-4">
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>What&apos;s the difference between * and ? in cron expressions?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                <code className="text-xs">*</code> means &quot;every value&quot; in a
+                field. <code className="text-xs">?</code> is a Quartz-specific (6-field)
+                character meaning &quot;no specific value&quot; — used in either
+                day-of-month or day-of-week so the two never conflict, e.g.{" "}
+                <code className="text-xs">0 0 12 ? * MON</code>. Standard 5-field Unix
+                cron does not support <code className="text-xs">?</code>; use{" "}
+                <code className="text-xs">*</code> there.
+              </div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Why didn&apos;t my cron job run?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                Check, in order: the daemon is running (<code className="text-xs">systemctl status cron</code>),
+                the timezone matches your expectation (<code className="text-xs">date</code>),
+                the script is executable and uses absolute paths, and the logs show an
+                attempt (<code className="text-xs">grep cron /var/log/syslog</code>). Add
+                a test job — <code className="text-xs">* * * * * echo hi &gt;&gt; /tmp/cron-test.log</code>{" "}
+                — to isolate whether the problem is cron itself or your command.
+              </div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>How do I run a job every 30 minutes?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                Use the step operator in the minute field:{" "}
+                <code className="text-xs">*/30 * * * * command</code>. Likewise{" "}
+                <code className="text-xs">*/15 * * * *</code> for every 15 minutes and{" "}
+                <code className="text-xs">0 */2 * * *</code> for every 2 hours on the hour.
+              </div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Is @daily the same as 0 0 * * *?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                Yes — both run at midnight every day. <code className="text-xs">@daily</code>{" "}
+                is a special string alias. The family includes{" "}
+                <code className="text-xs">@hourly</code>, <code className="text-xs">@midnight</code>,{" "}
+                <code className="text-xs">@weekly</code>, <code className="text-xs">@monthly</code>,{" "}
+                <code className="text-xs">@yearly</code>, and{" "}
+                <code className="text-xs">@reboot</code>, which runs once when the cron
+                daemon starts.
+              </div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Why did my cron job run twice or at the wrong time?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                The usual culprits: duplicate entries in <code className="text-xs">crontab -l</code>,
+                the same job also defined in <code className="text-xs">/etc/cron.d/</code> or{" "}
+                <code className="text-xs">/etc/crontab</code>, DST fall-back running the
+                job twice, or a system timezone different from the one you assumed. Run{" "}
+                <code className="text-xs">crontab -l</code> and{" "}
+                <code className="text-xs">timedatectl</code> to rule them out.
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html:
+              '{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the difference between * and ? in cron expressions?","acceptedAnswer":{"@type":"Answer","text":"* means every value in a field. ? is a Quartz-specific character meaning no specific value, used in either day-of-month or day-of-week to avoid conflicts, for example 0 0 12 ? * MON. Standard 5-field Unix cron does not support ?."}},{"@type":"Question","name":"Why did my cron job not run?","acceptedAnswer":{"@type":"Answer","text":"Check that the cron daemon is running, verify the system timezone, confirm the script is executable and uses absolute paths, and inspect the cron logs. Add a simple test job writing to a log file every minute to isolate the problem."}},{"@type":"Question","name":"How do I run a job every 30 minutes?","acceptedAnswer":{"@type":"Answer","text":"Use the step operator in the minute field: */30 * * * * followed by the command. Use */15 for every 15 minutes and 0 */2 for every 2 hours on the hour."}},{"@type":"Question","name":"Is @daily the same as 0 0 * * *?","acceptedAnswer":{"@type":"Answer","text":"Yes, both run at midnight every day. @daily is a special string alias, and the family includes @hourly, @weekly, @monthly, @yearly, and @reboot which runs once when the cron daemon starts."}},{"@type":"Question","name":"Why did my cron job run twice or at the wrong time?","acceptedAnswer":{"@type":"Answer","text":"Common causes are duplicate crontab entries, the same job also defined in /etc/cron.d, DST fall-back transitions, or a system timezone different from the one you assumed. Check crontab -l and timedatectl to rule them out."}}]}',
+          }}
+        />
 
         <div className="bg-[#1e293b] border border-[#334155] rounded-lg p-4">
           <p className="text-xs text-[#94a3b8] mb-1">🔍 Related Resources</p>

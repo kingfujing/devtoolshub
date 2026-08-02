@@ -246,6 +246,112 @@ console.log(match.groups.date);  // "19/Jun/2026:12:00:00"`}
           you will go from fearing <code className="text-[#f472b6] bg-[#1e293b] px-1.5 py-0.5 rounded text-sm">
             /^$REGEX$/</code> to wielding it with confidence.
         </p>
+
+        <h2 className="text-2xl font-bold text-white mt-10 mb-4">
+          Practical Tips for Everyday Regex
+        </h2>
+        <ul className="list-disc pl-6 space-y-2 text-[#cbd5e1]">
+          <li>
+            <strong className="text-white">Prefer named groups over numbered references.</strong>{" "}
+            Patterns like <code className="text-[#f472b6] bg-[#1e293b] px-1.5 py-0.5 rounded text-sm">{'(?<ip>\\d+\\.\\d+\\.\\d+\\.\\d+)'}</code>{" "}
+            survive refactors that reorder groups; <code className="text-[#f472b6] bg-[#1e293b] px-1.5 py-0.5 rounded text-sm">match[1]</code> does not.
+          </li>
+          <li>
+            <strong className="text-white">Do not use regex for fixed strings.</strong>{" "}
+            <code className="text-[#f472b6] bg-[#1e293b] px-1.5 py-0.5 rounded text-sm">String.includes()</code> and{" "}
+            <code className="text-[#f472b6] bg-[#1e293b] px-1.5 py-0.5 rounded text-sm">indexOf()</code>{" "}
+            beat regex by an order of magnitude on literal text.
+          </li>
+          <li>
+            <strong className="text-white">Guard user input against ReDoS.</strong>{" "}
+            Cap input length and avoid nested quantifiers whenever the pattern runs on untrusted data.
+          </li>
+          <li>
+            <strong className="text-white">
+              Use the <code className="text-[#f472b6] bg-[#1e293b] px-1.5 py-0.5 rounded text-sm">u</code> flag for Unicode.
+            </strong>{" "}
+            Emoji and CJK text only match correctly with Unicode-aware patterns and property escapes like{" "}
+            <code className="text-[#f472b6] bg-[#1e293b] px-1.5 py-0.5 rounded text-sm">{'\\p{L}'}</code>.
+          </li>
+          <li>
+            <strong className="text-white">Test edge cases before deploying.</strong>{" "}
+            Empty strings, multi-megabyte inputs, and strings packed with special characters expose
+            backtracking bugs that happy-path tests miss.
+          </li>
+        </ul>
+        <pre className="bg-[#1e293b] p-4 rounded-lg text-sm overflow-x-auto text-[#e2e8f0]">
+{`// Fixed literal text → use includes(), not regex
+if (str.includes('needle')) { /* fast path */ }
+
+// Untrusted input → cap size to avoid ReDoS
+if (input.length > 1000) throw new Error('Input too long');`}
+        </pre>
+
+        <section className="mt-10 pt-8 border-t border-[#334155]">
+          <h2 className="text-2xl font-bold text-white mb-4">Frequently Asked Questions</h2>
+          <div className="space-y-4">
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Do regular expressions have performance issues or ReDoS risks?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                Most patterns run in milliseconds, but nested quantifiers like{" "}
+                <code className="text-[#f472b6] bg-[#1e293b] px-1.5 py-0.5 rounded text-sm">(a+)+b</code>{" "}
+                can trigger catastrophic backtracking (ReDoS) on crafted input. Avoid nesting
+                quantifiers, use atomic groups or possessive quantifiers where supported, set
+                execution timeouts, and cap input length on user-supplied patterns.
+              </div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>What is the difference between greedy and lazy matching?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                Quantifiers are greedy by default — they match as much as possible. Adding a{" "}
+                <code className="text-[#f472b6] bg-[#1e293b] px-1.5 py-0.5 rounded text-sm">?</code>{" "}
+                makes them lazy, so they match as little as possible. For example,{" "}
+                <code className="text-[#f472b6] bg-[#1e293b] px-1.5 py-0.5 rounded text-sm">{'/<.*>/'}</code>{" "}
+                matches the whole line, while <code className="text-[#f472b6] bg-[#1e293b] px-1.5 py-0.5 rounded text-sm">{'/<.*?>/'}</code>{" "}
+                matches each tag individually.
+              </div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>How can I test my regular expressions?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                Use a dedicated tester with live highlighting, such as the{" "}
+                <Link href="/tools/regex-tester" className="text-[#3b82f6] hover:underline">
+                  DevToolsHub Regex Tester
+                </Link>
+                , which shows matches in real time and detects named groups. Always test valid
+                input, invalid input, edge cases (empty and very long strings), and large inputs to
+                catch backtracking problems early.
+              </div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Are regular expressions faster than plain string search?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                For fixed literal text, native methods like{" "}
+                <code className="text-[#f472b6] bg-[#1e293b] px-1.5 py-0.5 rounded text-sm">String.includes()</code>{" "}
+                and <code className="text-[#f472b6] bg-[#1e293b] px-1.5 py-0.5 rounded text-sm">indexOf()</code>{" "}
+                are faster because engines optimize them heavily. Reach for regex only when you need
+                real pattern matching — alternation, wildcards, or capture groups.
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: '{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do regular expressions have performance issues or ReDoS risks?","acceptedAnswer":{"@type":"Answer","text":"Most regex patterns run in milliseconds, but nested quantifiers like (a+)+b can cause catastrophic backtracking on crafted input. Avoid nested quantifiers, prefer atomic groups or possessive quantifiers, set timeouts, and limit input length."}},{"@type":"Question","name":"What is the difference between greedy and lazy matching?","acceptedAnswer":{"@type":"Answer","text":"Quantifiers are greedy by default and match as much as possible. Adding a ? makes them lazy, matching as little as possible. For example, /<.*>/ matches the whole line while /<.*?>/ matches each tag."}},{"@type":"Question","name":"How can I test my regular expressions?","acceptedAnswer":{"@type":"Answer","text":"Use a dedicated regex tester with live highlighting such as the DevToolsHub Regex Tester. Test valid input, invalid input, edge cases, and large inputs to catch backtracking problems."}},{"@type":"Question","name":"Are regular expressions faster than plain string search?","acceptedAnswer":{"@type":"Answer","text":"For fixed literal text, native methods like String.includes() or indexOf() are faster. Use regex only when you need pattern matching such as wildcards or alternation."}}]}'}}
+        />
       </div>
 
       {/* Footer */}

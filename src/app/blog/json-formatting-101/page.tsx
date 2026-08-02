@@ -192,6 +192,69 @@ export default function BlogPost() {
           </Link>{" "}
           before trying to read it. Your eyes — and your debugging efficiency — will thank you.
         </p>
+
+        {/* Practical Tips */}
+        <h2 className="text-2xl font-bold text-white mt-10 mb-4">
+          Practical Tips for Faster JSON Debugging
+        </h2>
+        <ul className="list-disc pl-6 space-y-2 text-[#cbd5e1]">
+          <li><strong className="text-white">Pretty-print from the console</strong> — <code className="text-[#f472b6] bg-[#1e293b] px-1.5 py-0.5 rounded text-sm">JSON.stringify(data, null, 2)</code> instantly formats any object in DevTools</li>
+          <li><strong className="text-white">Pipe API output through jq</strong> — <code className="text-[#f472b6] bg-[#1e293b] px-1.5 py-0.5 rounded text-sm">curl ... | jq .</code> validates and formats in one step</li>
+          <li><strong className="text-white">Validate before you trust</strong> — a formatter that flags errors with line numbers saves more time than any other feature</li>
+          <li><strong className="text-white">Compress for the wire, format for the eyes</strong> — strip whitespace for API responses, pretty-print for logs and docs</li>
+        </ul>
+        <pre className="bg-[#1e293b] p-4 rounded-lg text-sm overflow-x-auto text-[#e2e8f0]">
+{`// Format any object in the browser console
+console.log(JSON.stringify(data, null, 2));
+
+// Validate and pretty-print from the command line
+curl https://api.example.com/data | jq .`}
+        </pre>
+
+        {/* FAQ */}
+        <section className="mt-10 pt-8 border-t border-[#334155]">
+          <h2 className="text-2xl font-bold text-white mb-4">Frequently Asked Questions</h2>
+          <div className="space-y-4">
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>What is the difference between JSON and a JavaScript object?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">JSON is a strict text format: keys must be double-quoted, strings use double quotes, and trailing commas are forbidden. A JavaScript object literal is code, not text — it allows unquoted keys, single quotes, functions, and trailing commas. JSON.stringify() and JSON.parse() bridge the two.</div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>How do I check if a JSON string is valid?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">Wrap it in JSON.parse() inside a try/catch block, or paste it into a JSON formatter with validation. A good validator reports the exact line and character where parsing fails, which makes the fix obvious.</div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Does JSON support comments?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">No. The JSON specification does not allow comments of any kind. If you need comments in configuration, consider a superset like JSON5, or a format designed for it like YAML or TOML.</div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Is formatting large JSON files slow?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">Formatting is a linear pass, so even multi-megabyte files usually process in milliseconds. The bottleneck is usually the browser tab or editor, not the formatter. For huge files, prefer streaming tools or jq over pasting into a web page.</div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Why does JSON.stringify() drop some of my object keys?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">JSON.stringify() silently omits keys whose values are undefined, functions, or symbols, and converts NaN and Infinity to null. If keys disappear, check for those value types or provide a replacer function to control serialization.</div>
+            </details>
+          </div>
+        </section>
+
+        {/* FAQ Schema JSON-LD */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: '{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the difference between JSON and a JavaScript object?","acceptedAnswer":{"@type":"Answer","text":"JSON is a strict text format: keys must be double-quoted, strings use double quotes, and trailing commas are forbidden. A JavaScript object literal is code, not text. JSON.stringify() and JSON.parse() bridge the two."}},{"@type":"Question","name":"How do I check if a JSON string is valid?","acceptedAnswer":{"@type":"Answer","text":"Wrap it in JSON.parse() inside a try/catch block, or paste it into a JSON formatter with validation. A good validator reports the exact line and character where parsing fails."}},{"@type":"Question","name":"Does JSON support comments?","acceptedAnswer":{"@type":"Answer","text":"No. The JSON specification does not allow comments of any kind. If you need comments in configuration, consider a superset like JSON5, or a format designed for it like YAML or TOML."}},{"@type":"Question","name":"Is formatting large JSON files slow?","acceptedAnswer":{"@type":"Answer","text":"Formatting is a linear pass, so even multi-megabyte files usually process in milliseconds. The bottleneck is usually the browser tab or editor. For huge files, prefer streaming tools or jq over pasting into a web page."}},{"@type":"Question","name":"Why does JSON.stringify() drop some of my object keys?","acceptedAnswer":{"@type":"Answer","text":"JSON.stringify() silently omits keys whose values are undefined, functions, or symbols, and converts NaN and Infinity to null. If keys disappear, check for those value types or provide a replacer function."}}]}'}} />
       </div>
 
       {/* Footer */}

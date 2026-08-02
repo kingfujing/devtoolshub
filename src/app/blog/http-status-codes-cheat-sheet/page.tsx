@@ -620,6 +620,110 @@ export default function HttpStatusCodesCheatSheet() {
           </ul>
         </div>
 
+        <section className="mt-10 pt-8 border-t border-[#334155]">
+          <h2 className="text-2xl font-bold text-white mb-4">Frequently Asked Questions</h2>
+          <div className="space-y-4">
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>What is the difference between 401 Unauthorized and 403 Forbidden?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                <code className="text-xs">401 Unauthorized</code> means the client is{" "}
+                <strong className="text-white">not authenticated</strong> — no valid credentials
+                were provided, or the token is missing or expired.{" "}
+                <code className="text-xs">403 Forbidden</code> means the client{" "}
+                <strong className="text-white">is authenticated</strong> but does not have
+                permission to access the resource. A logged-in user hitting an admin endpoint
+                should get 403; an anonymous request should get 401. Also note that the spec
+                recommends <code className="text-xs">401</code> include a{" "}
+                <code className="text-xs">WWW-Authenticate</code> header describing the auth scheme.
+              </div>
+            </details>
+
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>What is the difference between 301, 302, 307, and 308 redirects?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                <code className="text-xs">301</code> and <code className="text-xs">308</code> are
+                permanent redirects; <code className="text-xs">302</code> and{" "}
+                <code className="text-xs">307</code> are temporary. The key difference is method
+                handling: <code className="text-xs">301</code> and <code className="text-xs">302</code>{" "}
+                may rewrite <code className="text-xs">POST</code> into <code className="text-xs">GET</code>{" "}
+                (most browsers do), while <code className="text-xs">307</code> and{" "}
+                <code className="text-xs">308</code> always preserve the method and request body.
+                Use <code className="text-xs">308</code> for permanent redirects of form
+                submissions or API endpoints, and <code className="text-xs">307</code> for
+                temporary ones where the method must survive.
+              </div>
+            </details>
+
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>When should I return 429 Too Many Requests?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                Return <code className="text-xs">429</code> when a client exceeds your rate limit
+                — for example, more than 100 requests per minute. Always include a{" "}
+                <code className="text-xs">Retry-After</code> header (in seconds or an HTTP date)
+                so clients know when to try again, and consider adding{" "}
+                <code className="text-xs">RateLimit-Limit</code>,{" "}
+                <code className="text-xs">RateLimit-Remaining</code>, and{" "}
+                <code className="text-xs">RateLimit-Reset</code> headers for transparency. Use{" "}
+                <code className="text-xs">503</code> instead when the whole service is overloaded
+                or down for maintenance, since that signals a server-side condition rather than a
+                client quota.
+              </div>
+            </details>
+
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Should I return 404 or 403 for resources that exist but are not authorized?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                For security-sensitive resources, returning <code className="text-xs">404</code>{" "}
+                is usually the better choice. A <code className="text-xs">403</code> tells an
+                attacker that the resource exists, letting them enumerate your API. Returning{" "}
+                <code className="text-xs">404</code> for both "not found" and "forbidden" hides
+                the resource's existence. Reserve <code className="text-xs">403</code> for cases
+                where revealing existence is fine, such as a public site telling a logged-in user
+                they lack admin rights.
+              </div>
+            </details>
+
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>What is the difference between 500, 502, 503, and 504?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                <code className="text-xs">500 Internal Server Error</code> is a generic failure
+                inside your application — an unhandled exception or misconfiguration.{" "}
+                <code className="text-xs">502 Bad Gateway</code> means an upstream server (like a
+                reverse proxy's backend) returned an invalid response.{" "}
+                <code className="text-xs">503 Service Unavailable</code> means the server is
+                overloaded or in maintenance — pair it with{" "}
+                <code className="text-xs">Retry-After</code>.{" "}
+                <code className="text-xs">504 Gateway Timeout</code> means an upstream server
+                didn't respond in time. All four are server-side: check your application logs,
+                upstream health, and load balancer configuration in that order.
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html:
+              '{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the difference between 401 Unauthorized and 403 Forbidden?","acceptedAnswer":{"@type":"Answer","text":"401 means the client is not authenticated — no valid credentials were provided, or the token is missing or expired. 403 means the client is authenticated but does not have permission to access the resource. A logged-in user hitting an admin endpoint should get 403; an anonymous request should get 401."}},{"@type":"Question","name":"What is the difference between 301, 302, 307, and 308 redirects?","acceptedAnswer":{"@type":"Answer","text":"301 and 308 are permanent redirects; 302 and 307 are temporary. 301 and 302 may rewrite POST into GET, while 307 and 308 always preserve the method and request body. Use 308 for permanent redirects of form submissions or API endpoints, and 307 for temporary ones where the method must survive."}},{"@type":"Question","name":"When should I return 429 Too Many Requests?","acceptedAnswer":{"@type":"Answer","text":"Return 429 when a client exceeds your rate limit. Always include a Retry-After header so clients know when to try again, and consider RateLimit-* headers for transparency. Use 503 instead when the whole service is overloaded or down for maintenance."}},{"@type":"Question","name":"Should I return 404 or 403 for resources that exist but are not authorized?","acceptedAnswer":{"@type":"Answer","text":"For security-sensitive resources, 404 is usually better. A 403 reveals that the resource exists and lets attackers enumerate the API. Returning 404 for both not-found and forbidden hides existence. Reserve 403 for cases where revealing existence is fine, such as a logged-in user lacking admin rights."}},{"@type":"Question","name":"What is the difference between 500, 502, 503, and 504?","acceptedAnswer":{"@type":"Answer","text":"500 is a generic failure inside your application. 502 Bad Gateway means an upstream server returned an invalid response. 503 Service Unavailable means the server is overloaded or in maintenance, and pairs with Retry-After. 504 Gateway Timeout means an upstream server did not respond in time."}}]}',
+          }}
+        />
+
         <div className="border-t border-[#334155] pt-6 mt-8">
           <p className="text-xs text-[#64748b]">
             <strong>Related Tools:</strong>{" "}

@@ -4,11 +4,11 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "SQL Query Cheat Sheet — DevToolsHub",
   description:
-    "Essential SQL query reference for developers. SELECT, JOIN, GROUP BY, subqueries, window functions, and query optimization tips.",
+    "Essential SQL query reference for developers. SELECT, JOIN, GROUP BY, subqueries, window functions, query optimization tips, common mistakes, and a developer FAQ.",
   openGraph: {
     title: "SQL Query Cheat Sheet: Essential Reference for Developers",
     description:
-      "Every SQL command you need — SELECT, JOIN, GROUP BY, subqueries, window functions, aggregate functions, DML, DDL, and optimization tips with practical examples.",
+      "Every SQL command you need — SELECT, JOIN, GROUP BY, subqueries, window functions, aggregate functions, DML, DDL, optimization tips, common mistakes, and FAQs with practical examples.",
     type: "article",
   },
 };
@@ -846,6 +846,138 @@ SELECT * FROM org_chart ORDER BY level, name;`}</code></pre>
             </tbody>
           </table>
         </div>
+
+        <h2 className="text-2xl font-bold text-white mt-10 mb-4">
+          Common Mistakes &amp; How to Avoid Them
+        </h2>
+        <p>
+          These five mistakes cause most of the slow queries and wrong results
+          I&apos;ve debugged in production. Each one has a simple fix once you
+          know what to look for.
+        </p>
+        <ul className="list-disc pl-6 space-y-3">
+          <li>
+            <strong className="text-white">Comparing to NULL with <code className="text-xs">=</code>.</strong>{" "}
+            <code className="text-xs">WHERE email = NULL</code> returns zero rows
+            because NULL comparisons evaluate to UNKNOWN, not TRUE. Always use{" "}
+            <code className="text-xs">IS NULL</code> / <code className="text-xs">IS NOT NULL</code>{" "}
+            — and remember that <code className="text-xs">NULL &lt;&gt; &apos;x&apos;</code>{" "}
+            also excludes NULL rows.
+          </li>
+          <li>
+            <strong className="text-white">Using <code className="text-xs">SELECT *</code> in production code.</strong>{" "}
+            It pulls every column, wasting I/O and bandwidth, and silently breaks when
+            someone adds a column. List columns explicitly — it also makes your
+            application&apos;s data contract visible in the query itself.
+          </li>
+          <li>
+            <strong className="text-white">The N+1 query trap.</strong>{" "}
+            Fetching a list of users, then running one query per user inside a loop,
+            is the classic ORM performance killer. Replace it with a single JOIN or an{" "}
+            <code className="text-xs">IN</code> subquery:{" "}
+            <code className="text-xs">SELECT * FROM orders WHERE user_id IN (SELECT id FROM users WHERE plan = &apos;pro&apos;)</code>.
+          </li>
+          <li>
+            <strong className="text-white">Wrapping indexed columns in functions.</strong>{" "}
+            <code className="text-xs">WHERE YEAR(created_at) = 2024</code> forces a full
+            scan because the index stores raw values, not function results. Use a range
+            predicate instead:{" "}
+            <code className="text-xs">created_at &gt;= &apos;2024-01-01&apos; AND created_at &lt; &apos;2025-01-01&apos;</code>.
+          </li>
+          <li>
+            <strong className="text-white">Deep OFFSET pagination.</strong>{" "}
+            <code className="text-xs">OFFSET 100000 LIMIT 50</code> still reads and
+            discards 100,000 rows. Use keyset pagination —{" "}
+            <code className="text-xs">WHERE id &gt; last_seen_id ORDER BY id LIMIT 50</code>{" "}
+            — which stays fast no matter how deep you go.
+          </li>
+        </ul>
+
+        <section className="mt-10 pt-8 border-t border-[#334155]">
+          <h2 className="text-2xl font-bold text-white mb-4">Frequently Asked Questions</h2>
+          <div className="space-y-4">
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>What&apos;s the difference between INNER JOIN and LEFT JOIN?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                <code className="text-xs">INNER JOIN</code> returns only rows that have
+                matches in both tables. <code className="text-xs">LEFT JOIN</code> returns
+                every row from the left table, filling unmatched right-side columns with{" "}
+                <code className="text-xs">NULL</code>. If your result is missing rows, you
+                probably need a LEFT JOIN; if you&apos;re seeing duplicate rows, the
+                &quot;one&quot; side has multiple matches.
+              </div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Why is my query slow, and how do I fix it?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                Start with <code className="text-xs">EXPLAIN ANALYZE SELECT ...</code> and
+                look for sequential scans on large tables — add an index on the columns
+                used in <code className="text-xs">WHERE</code> and{" "}
+                <code className="text-xs">JOIN</code>. Avoid <code className="text-xs">SELECT *</code>,
+                avoid functions around indexed columns, and prefer{" "}
+                <code className="text-xs">EXISTS</code> over{" "}
+                <code className="text-xs">IN</code> for large subqueries.
+              </div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>What&apos;s the difference between WHERE and HAVING?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                <code className="text-xs">WHERE</code> filters individual rows{" "}
+                <em>before</em> grouping; <code className="text-xs">HAVING</code> filters
+                groups <em>after</em> aggregation. That&apos;s why{" "}
+                <code className="text-xs">WHERE</code> can&apos;t reference{" "}
+                <code className="text-xs">SUM()</code> or <code className="text-xs">COUNT()</code>,
+                but <code className="text-xs">HAVING</code> can. Use{" "}
+                <code className="text-xs">WHERE status = &apos;paid&apos;</code> to drop rows,
+                and <code className="text-xs">HAVING SUM(total) &gt; 100</code> to drop groups.
+              </div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Why do COUNT(*) and COUNT(column) give different results?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                <code className="text-xs">COUNT(*)</code> counts every row, including rows
+                with NULLs. <code className="text-xs">COUNT(column)</code> counts only
+                non-NULL values in that column. If the two numbers differ, your column
+                contains NULLs — which is often the real signal you&apos;re looking for.
+              </div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>How do I avoid the N+1 query problem?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                Replace loop-based per-row queries with a single JOIN or an{" "}
+                <code className="text-xs">IN</code> subquery. Instead of querying orders
+                once per user, fetch them all at once:{" "}
+                <code className="text-xs">SELECT * FROM orders WHERE user_id IN (SELECT id FROM users WHERE plan = &apos;pro&apos;)</code>.{" "}
+                In ORMs, use eager loading (<code className="text-xs">selectinload</code> in
+                SQLAlchemy, <code className="text-xs">includes</code> in Rails/EF) rather
+                than lazy loading.
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html:
+              '{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the difference between INNER JOIN and LEFT JOIN?","acceptedAnswer":{"@type":"Answer","text":"INNER JOIN returns only rows with matches in both tables. LEFT JOIN returns every row from the left table and fills unmatched right-side columns with NULL. Missing rows usually means you need LEFT JOIN; duplicate rows usually means multiple matches on one side."}},{"@type":"Question","name":"Why is my SQL query slow and how do I fix it?","acceptedAnswer":{"@type":"Answer","text":"Run EXPLAIN ANALYZE SELECT and look for sequential scans on large tables, then index the columns used in WHERE and JOIN clauses. Avoid SELECT *, avoid functions on indexed columns, and prefer EXISTS over IN for large subqueries."}},{"@type":"Question","name":"What is the difference between WHERE and HAVING?","acceptedAnswer":{"@type":"Answer","text":"WHERE filters individual rows before grouping, while HAVING filters groups after aggregation. WHERE cannot reference aggregate functions like SUM, and HAVING filters the grouped result set."}},{"@type":"Question","name":"Why do COUNT(*) and COUNT(column) give different results?","acceptedAnswer":{"@type":"Answer","text":"COUNT(*) counts every row including rows with NULL values. COUNT(column) counts only non-NULL values in that column. If the two numbers differ, your column contains NULLs."}},{"@type":"Question","name":"How do I avoid the N+1 query problem?","acceptedAnswer":{"@type":"Answer","text":"Replace loop-based per-row queries with a single JOIN or an IN subquery, and use eager loading in ORMs instead of lazy loading."}}]}',
+          }}
+        />
 
         <div className="bg-[#1e293b] border border-[#334155] rounded-lg p-4">
           <p className="text-xs text-[#94a3b8] mb-1">🔍 Related Resources</p>

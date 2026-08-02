@@ -971,6 +971,164 @@ export default function HtmlEntitiesReference() {
           </div>
         </div>
 
+        <h2 className="text-2xl font-bold text-white mt-10 mb-4">
+          Common Mistakes &amp; How to Avoid Them
+        </h2>
+        <p>
+          Entities look simple, but a few recurring mistakes cause broken pages, escaped-looking
+          text, and subtle layout bugs. Here are the five most common ones.
+        </p>
+
+        <h3 className="text-xl font-bold text-white mt-8 mb-3">1. Forgetting to escape the ampersand itself</h3>
+        <p>
+          The <code className="text-xs">&amp;amp;</code> entity is special: because{" "}
+          <code className="text-xs">&amp;</code> starts every entity, a literal ampersand in your
+          text (like <code className="text-xs">AT&amp;T</code> or{" "}
+          <code className="text-xs">R&amp;D</code>) must be written as{" "}
+          <code className="text-xs">&amp;amp;</code>. Otherwise the browser may try to parse{" "}
+          <code className="text-xs">&amp;T</code> or <code className="text-xs">&amp;D</code> as an
+          entity and render unexpected characters.
+        </p>
+        <pre className="bg-[#1e293b] border border-[#334155] rounded-lg p-4 text-sm overflow-x-auto"><code>{`<!-- BUG: ambiguous, may render wrong -->
+<p>Acme & Sons</p>
+
+<!-- FIX: escape the ampersand -->
+<p>Acme &amp; Sons</p>`}</code></pre>
+
+        <h3 className="text-xl font-bold text-white mt-8 mb-3">2. Dropping the trailing semicolon</h3>
+        <p>
+          Writing <code className="text-xs">&amp;copy</code> without the semicolon works in HTML5 in
+          some contexts but is invalid in XHTML and risky inside attribute values. Always include the
+          semicolon: <code className="text-xs">&amp;copy;</code>. The same applies to numeric
+          references — <code className="text-xs">&amp;#169;</code> is correct,{" "}
+          <code className="text-xs">&amp;#169</code> is not.
+        </p>
+
+        <h3 className="text-xl font-bold text-white mt-8 mb-3">3. Double-escaping entities</h3>
+        <p>
+          If your page shows <code className="text-xs">&amp;amp;lt;</code> as literal text instead of
+          a <code className="text-xs">&lt;</code> character, the content was escaped twice — once by
+          your template engine or framework (React, Vue, Handlebars escape by default), then again by
+          you. Pick one layer: let the framework escape user input, and never feed already-escaped
+          strings into <code className="text-xs">dangerouslySetInnerHTML</code> or{" "}
+          <code className="text-xs">innerHTML</code>.
+        </p>
+        <pre className="bg-[#1e293b] border border-[#334155] rounded-lg p-4 text-sm overflow-x-auto"><code>{`// BUG: React already escapes, so this renders "&lt;" as text
+<div>{'&lt;div&gt;'}</div>
+
+// FIX: write the raw character — React escapes it safely
+<div>{'<div>'}</div>
+
+// BUG: double-escaping user input for innerHTML
+el.innerHTML = escapeHtml(userInput).replace(/&/g, '&amp;');`}</code></pre>
+
+        <h3 className="text-xl font-bold text-white mt-8 mb-3">4. Using &amp;nbsp; for layout spacing</h3>
+        <p>
+          Stacking <code className="text-xs">&amp;nbsp;</code> entities to indent or align text works
+          visually but breaks on narrow screens and with different font metrics. A non-breaking space
+          also stops text from wrapping, which can push layout unexpectedly. Use CSS{" "}
+          <code className="text-xs">margin</code>, <code className="text-xs">padding</code>, or{" "}
+          <code className="text-xs">gap</code> for spacing instead — reserve{" "}
+          <code className="text-xs">&amp;nbsp;</code> for keeping two words on the same line (for
+          example, "10&nbsp;kg" or "Chapter&nbsp;5").
+        </p>
+
+        <h3 className="text-xl font-bold text-white mt-8 mb-3">5. Confusing decimal and hex numeric references</h3>
+        <p>
+          <code className="text-xs">&amp;#38;</code> (decimal) and{" "}
+          <code className="text-xs">&amp;#x26;</code> (hex) both render{" "}
+          <code className="text-xs">&amp;</code>, but they are not interchangeable digits. Writing{" "}
+          <code className="text-xs">&amp;#x38;</code> renders the character <code className="text-xs">8</code>,
+          not <code className="text-xs">&amp;</code>. Check the prefix:{" "}
+          <code className="text-xs">#x</code> means hexadecimal, plain{" "}
+          <code className="text-xs">#</code> means decimal.
+        </p>
+
+        <section className="mt-10 pt-8 border-t border-[#334155]">
+          <h2 className="text-2xl font-bold text-white mb-4">Frequently Asked Questions</h2>
+          <div className="space-y-4">
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Why use HTML entities instead of typing the character directly?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                Three reasons: <strong>reserved characters</strong> like{" "}
+                <code className="text-xs">&lt;</code>, <code className="text-xs">&gt;</code>, and{" "}
+                <code className="text-xs">&amp;</code> would be interpreted as markup;{" "}
+                <strong>encoding safety</strong> — an entity works even if the file encoding drops
+                the character (for example, a smart quote in a document declared as ASCII); and{" "}
+                <strong>reliability</strong> — invisible characters such as the non-breaking space
+                are hard to type and easy to mistake for a regular space.
+              </div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>What is the difference between &amp;nbsp; and a regular space?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                A non-breaking space (<code className="text-xs">&amp;nbsp;</code>, U+00A0) prevents
+                the browser from wrapping a line at that point, so "10 kg" stays together. It also
+                does not collapse: HTML collapses runs of regular spaces into one, but multiple{" "}
+                <code className="text-xs">&amp;nbsp;</code> entities each keep their width, which is
+                why they are often misused for indentation. Use them for preventing breaks, not for
+                layout.
+              </div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>What is the difference between &amp;amp;, &amp;#38;, and &amp;#x26;?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                All three render the same <code className="text-xs">&amp;</code> character.{" "}
+                <code className="text-xs">&amp;amp;</code> is the named entity — readable but only
+                available for characters that have a defined name. <code className="text-xs">&amp;#38;</code>{" "}
+                is the decimal numeric reference and <code className="text-xs">&amp;#x26;</code> the
+                hex one; numeric references work for any Unicode code point, even ones without a
+                name. Use named entities for readability and numeric references for obscure symbols.
+              </div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Do I need to escape quotes inside HTML attributes?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                Only the quote that delimits the attribute needs escaping: in{" "}
+                <code className="text-xs">&lt;a title="Say &amp;quot;hi&amp;quot;"&gt;</code> the
+                inner double quotes must be <code className="text-xs">&amp;quot;</code>. Inside text
+                content, quotes are harmless and do not need escaping. Escaping them everywhere is
+                never wrong, but it makes source harder to read — escape only where required, and
+                prefer single quotes as attribute delimiters when the value contains double quotes.
+              </div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Why does my page show &amp;amp;lt; as literal text instead of &lt;?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                The text was escaped twice. If you write <code className="text-xs">&amp;amp;lt;</code>{" "}
+                in your source, the browser parses <code className="text-xs">&amp;amp;</code> into{" "}
+                <code className="text-xs">&amp;</code> and shows the literal text{" "}
+                <code className="text-xs">&amp;lt;</code>. This usually happens when a template
+                engine or framework that already escapes output receives pre-escaped input, or when
+                user input is escaped more than once. Escape at exactly one layer.
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html:
+              '{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why use HTML entities instead of typing the character directly?","acceptedAnswer":{"@type":"Answer","text":"Three reasons: reserved characters like <, >, and & would be interpreted as markup; encoding safety — an entity works even if the file encoding drops the character; and reliability — invisible characters such as the non-breaking space are hard to type and easy to mistake for a regular space."}},{"@type":"Question","name":"What is the difference between &nbsp; and a regular space?","acceptedAnswer":{"@type":"Answer","text":"A non-breaking space (&nbsp;, U+00A0) prevents the browser from wrapping a line at that point. It also does not collapse: HTML collapses runs of regular spaces into one, but multiple &nbsp; entities each keep their width. Use them for preventing breaks, not for layout."}},{"@type":"Question","name":"What is the difference between &amp;, &#38;, and &#x26;?","acceptedAnswer":{"@type":"Answer","text":"All three render the same & character. &amp; is the named entity, &#38; is the decimal numeric reference, and &#x26; is the hex one. Numeric references work for any Unicode code point; named entities are more readable but only exist for characters that have a defined name."}},{"@type":"Question","name":"Do I need to escape quotes inside HTML attributes?","acceptedAnswer":{"@type":"Answer","text":"Only the quote that delimits the attribute needs escaping. Inside text content, quotes are harmless. Escape only where required, and prefer single quotes as attribute delimiters when the value contains double quotes."}},{"@type":"Question","name":"Why does my page show &amp;lt; as literal text instead of <?","acceptedAnswer":{"@type":"Answer","text":"The text was escaped twice. If you write &amp;lt; in your source, the browser parses &amp; into & and shows the literal text &lt;. This usually happens when a template engine or framework that already escapes output receives pre-escaped input. Escape at exactly one layer."}}]}',
+          }}
+        />
+
         <div className="border-t border-[#334155] pt-6 mt-8">
           <p className="text-xs text-[#64748b]">
             <strong>Related Tools:</strong>{" "}

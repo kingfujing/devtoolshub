@@ -612,6 +612,179 @@ h1 {
           </ul>
         </div>
 
+        <h2 className="text-2xl font-bold text-white mt-10 mb-4">
+          Common Mistakes &amp; How to Avoid Them
+        </h2>
+        <p>
+          CSS units seem simple until a layout breaks. These are the mistakes developers make
+          most often — and the fixes that prevent them.
+        </p>
+
+        <h3 className="text-xl font-semibold text-white mt-8 mb-3">
+          1. Using px for Font Sizes Hurts Accessibility
+        </h3>
+        <p>
+          <code className="text-xs">px</code> font sizes ignore the user&apos;s browser font-size
+          setting, so users who increase their default font size (often for vision reasons) see
+          no change on your site. Use <code className="text-xs">rem</code> for font sizes — it
+          scales with the root font size — and reserve <code className="text-xs">px</code> for
+          borders, shadows, and 1px hairline rules that should stay crisp.
+        </p>
+
+        <h3 className="text-xl font-semibold text-white mt-8 mb-3">
+          2. Confusing em with rem
+        </h3>
+        <p>
+          <code className="text-xs">rem</code> is always relative to the root element font size
+          (usually 16px), so it is predictable anywhere in the tree.{" "}
+          <code className="text-xs">em</code> is relative to the <em>current</em> element&apos;s
+          font size, and because it compounds, nested elements can produce surprising sizes: a{" "}
+          <code className="text-xs">1.5em</code> padding inside a <code className="text-xs">1.5em</code>{" "}
+          font becomes <code className="text-xs">2.25em</code> of effective spacing. Use{" "}
+          <code className="text-xs">rem</code> for global spacing and typography; use{" "}
+          <code className="text-xs">em</code> deliberately when a component should scale with its
+          own font size (icons, button padding).
+        </p>
+
+        <h3 className="text-xl font-semibold text-white mt-8 mb-3">
+          3. Using 100vh for Mobile Full-Height Sections
+        </h3>
+        <p>
+          On mobile browsers, <code className="text-xs">100vh</code> refers to the{" "}
+          <strong className="text-white">largest</strong> viewport, which includes the area hidden
+          behind the URL bar — so a <code className="text-xs">100vh</code> section gets cut off or
+          causes scroll jumps when the bar collapses. Use <code className="text-xs">100dvh</code>{" "}
+          (dynamic viewport height) for mobile full-height layouts, with{" "}
+          <code className="text-xs">100svh</code> as a fallback for older browsers.
+        </p>
+
+        <h3 className="text-xl font-semibold text-white mt-8 mb-3">
+          4. Using vw for Font Sizes Without clamp()
+        </h3>
+        <p>
+          A headline set to <code className="text-xs">4vw</code> looks great on desktop but
+          becomes unreadably small on phones and comically huge on ultrawide monitors. Wrap
+          viewport units in <code className="text-xs">clamp()</code> with{" "}
+          <code className="text-xs">rem</code> bounds:{" "}
+          <code className="text-xs">{`font-size: clamp(1.5rem, 4vw, 3rem)`}</code>. This gives you
+          fluid scaling without ever crossing accessibility limits.
+        </p>
+
+        <h3 className="text-xl font-semibold text-white mt-8 mb-3">
+          5. Expecting Percentage Heights to "Just Work"
+        </h3>
+        <p>
+          <code className="text-xs">height: 50%</code> only works when the parent has an explicit
+          height (not <code className="text-xs">auto</code>). A common trap is setting a child to{" "}
+          <code className="text-xs">100%</code> inside a parent whose height comes from content —
+          the percentage resolves to <code className="text-xs">auto</code> and the layout collapses.
+          If the parent&apos;s height is content-driven, use flexbox/grid stretch,{" "}
+          <code className="text-xs">min-height</code>, or viewport units instead of percentages.
+        </p>
+
+        <section className="mt-10 pt-8 border-t border-[#334155]">
+          <h2 className="text-2xl font-bold text-white mb-4">Frequently Asked Questions</h2>
+          <div className="space-y-4">
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>What is the difference between px and rem?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                <code className="text-xs">px</code> is an absolute unit — 1px is 1/96th of an
+                inch on screen — so it never changes regardless of browser settings.{" "}
+                <code className="text-xs">rem</code> is relative to the root element font size
+                (usually 16px, so <code className="text-xs">1rem</code> = 16px). Because{" "}
+                <code className="text-xs">rem</code> scales when users change their browser&apos;s
+                default font size, it is the recommended unit for font sizes, padding, and margin.
+                Use <code className="text-xs">px</code> for borders and shadows that must stay
+                visually identical at any zoom level.
+              </div>
+            </details>
+
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>What is the difference between em and rem?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                <code className="text-xs">rem</code> is relative to the <strong className="text-white">root</strong>{" "}
+                element font size, so <code className="text-xs">1rem</code> is the same everywhere
+                in the document. <code className="text-xs">em</code> is relative to the{" "}
+                <strong className="text-white">current element&apos;s</strong> font size, and it
+                compounds through nesting — a <code className="text-xs">2em</code> margin inside a{" "}
+                <code className="text-xs">1.5em</code> font resolves to{" "}
+                <code className="text-xs">3em</code>. This makes <code className="text-xs">em</code>{" "}
+                great for components that should scale with their own text (icon sizes, button
+                padding) and <code className="text-xs">rem</code> better for site-wide spacing and
+                typography.
+              </div>
+            </details>
+
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>When should I use vw and vh?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                <code className="text-xs">vw</code> and <code className="text-xs">vh</code> are 1%
+                of the viewport width and height. Use them for full-screen hero sections, overlays,
+                and fluid typography inside <code className="text-xs">clamp()</code>. Avoid raw{" "}
+                <code className="text-xs">vh</code> for mobile heights — the URL bar changes the
+                visible viewport, so use <code className="text-xs">100dvh</code> (dynamic) or{" "}
+                <code className="text-xs">100svh</code> (small) instead. For widths, prefer{" "}
+                <code className="text-xs">%</code> when the size should relate to a container
+                rather than the whole viewport.
+              </div>
+            </details>
+
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Should I use px or rem for font sizes?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                Use <code className="text-xs">rem</code>. Because <code className="text-xs">rem</code>{" "}
+                is relative to the root font size, it respects the user&apos;s browser font-size
+                preference — a core accessibility requirement. <code className="text-xs">px</code>{" "}
+                ignores that setting, which can make your text impossible to resize for users with
+                low vision. A common pattern is setting the root font size in{" "}
+                <code className="text-xs">rem</code> (or leaving it at the default 16px) and sizing
+                everything else in <code className="text-xs">rem</code>, with{" "}
+                <code className="text-xs">clamp()</code> for fluid type.
+              </div>
+            </details>
+
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>What is the difference between vh, svh, lvh, and dvh?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                These are the four viewport-height units. <code className="text-xs">vh</code> equals
+                1% of the <strong className="text-white">largest</strong> viewport — on mobile that
+                includes the area hidden behind the browser UI. <code className="text-xs">svh</code>{" "}
+                is the <strong className="text-white">small</strong> viewport (visible area when the
+                URL bar is shown), <code className="text-xs">lvh</code> is the{" "}
+                <strong className="text-white">large</strong> viewport (URL bar hidden), and{" "}
+                <code className="text-xs">dvh</code> is the{" "}
+                <strong className="text-white">dynamic</strong> viewport, which updates live as the
+                browser UI expands and collapses. For mobile full-height sections,{" "}
+                <code className="text-xs">100dvh</code> gives the smoothest behavior, with{" "}
+                <code className="text-xs">100svh</code> as a fallback.
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html:
+              '{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the difference between px and rem?","acceptedAnswer":{"@type":"Answer","text":"px is an absolute unit equal to 1/96th of an inch on screen and never changes with browser settings. rem is relative to the root element font size, usually 16px, so 1rem equals 16px. rem scales when users change their browser default font size, making it the recommended unit for font sizes, padding, and margin. Use px for borders and shadows."}},{"@type":"Question","name":"What is the difference between em and rem?","acceptedAnswer":{"@type":"Answer","text":"rem is relative to the root element font size, so 1rem is the same everywhere in the document. em is relative to the current element font size and compounds through nesting, so a 2em margin inside a 1.5em font resolves to 3em. Use em for components that scale with their own font size and rem for site-wide spacing and typography."}},{"@type":"Question","name":"When should I use vw and vh?","acceptedAnswer":{"@type":"Answer","text":"vw and vh are 1% of the viewport width and height. Use them for full-screen hero sections, overlays, and fluid typography inside clamp(). Avoid raw vh for mobile heights because the URL bar changes the visible viewport; use 100dvh or 100svh instead. Prefer percent for widths that relate to a container."}},{"@type":"Question","name":"Should I use px or rem for font sizes?","acceptedAnswer":{"@type":"Answer","text":"Use rem. rem is relative to the root font size, so it respects the user browser font-size preference, a core accessibility requirement. px ignores that setting, which can make text impossible to resize for users with low vision. Use clamp() for fluid type."}},{"@type":"Question","name":"What is the difference between vh, svh, lvh, and dvh?","acceptedAnswer":{"@type":"Answer","text":"vh is 1% of the largest viewport, which on mobile includes the area hidden behind the browser UI. svh is the small viewport, lvh is the large viewport, and dvh is the dynamic viewport that updates as the browser UI expands and collapses. Use 100dvh for mobile full-height sections with 100svh as a fallback."}}]}',
+          }}
+        />
+
         <div className="border-t border-[#334155] pt-6 mt-8">
           <p className="text-xs text-[#64748b]">
             <strong>Related Tools:</strong>{" "}

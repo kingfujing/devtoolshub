@@ -4,11 +4,11 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Git Commands Cheat Sheet — DevToolsHub",
   description:
-    "Essential Git commands reference for daily development. From git init to interactive rebase — commands, options, and practical examples.",
+    "Essential Git commands reference for daily development. From git init to interactive rebase — commands, options, practical examples, common mistakes, and a developer FAQ.",
   openGraph: {
     title: "Git Commands Cheat Sheet: Essential Git Reference for Developers",
     description:
-      "Every Git command you need for daily work. Setup, staging, branching, remotes, undoing changes, merging, stashing, and logs — with practical examples.",
+      "Every Git command you need for daily work. Setup, staging, branching, remotes, undoing changes, merging, stashing, and logs — with practical examples, common pitfalls, and FAQs.",
     type: "article",
   },
 };
@@ -679,6 +679,148 @@ git rebase -i HEAD~3
             </div>
           </div>
         </div>
+
+        <h2 className="text-2xl font-bold text-white mt-10 mb-4">
+          Common Mistakes &amp; How to Avoid Them
+        </h2>
+        <p>
+          These are the mistakes I see most often in pull requests and on
+          incident calls — and the exact commands to recover from them before
+          they cost you an afternoon.
+        </p>
+        <ul className="list-disc pl-6 space-y-3">
+          <li>
+            <strong className="text-white">Committing secrets to the repository.</strong>{" "}
+            A stray <code className="text-xs">.env</code> file or API key in a commit is
+            the most expensive mistake in git. Rotate the credential immediately, then
+            scrub history with{" "}
+            <code className="text-xs">git filter-repo --path .env --invert-paths</code>.
+            Deleting the file and committing again is not enough — the secret stays in
+            history.
+          </li>
+          <li>
+            <strong className="text-white">Trusting <code className="text-xs">git commit -am</code> to catch everything.</strong>{" "}
+            The <code className="text-xs">-a</code> flag only stages changes to already
+            tracked files; brand-new files are silently skipped. That&apos;s how
+            &quot;forgot to add file&quot; commits happen. Run{" "}
+            <code className="text-xs">git status</code> before committing and review
+            hunks with <code className="text-xs">git add -p</code>.
+          </li>
+          <li>
+            <strong className="text-white">Force-pushing to shared branches.</strong>{" "}
+            A bare <code className="text-xs">git push --force</code> rewrites history
+            and can destroy your teammates&apos; commits. Use{" "}
+            <code className="text-xs">git push --force-with-lease</code> instead — it
+            aborts if the remote contains commits you haven&apos;t seen.
+          </li>
+          <li>
+            <strong className="text-white">Amending commits that were already pushed.</strong>{" "}
+            <code className="text-xs">git commit --amend</code> is a local operation.
+            Amending a pushed commit creates divergent history and a confusing merge on
+            the next pull. If the commit is on the remote, use{" "}
+            <code className="text-xs">git revert &lt;sha&gt;</code> to add a new commit
+            that undoes it.
+          </li>
+          <li>
+            <strong className="text-white">Deleting both sides of a merge conflict.</strong>{" "}
+            Stripping everything between the{" "}
+            <code className="text-xs">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code> and{" "}
+            <code className="text-xs">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> markers often
+            discards both versions. Read both sides, decide what to keep, then verify
+            with <code className="text-xs">git diff --check</code> that no conflict
+            markers remain before staging.
+          </li>
+        </ul>
+
+        <section className="mt-10 pt-8 border-t border-[#334155]">
+          <h2 className="text-2xl font-bold text-white mb-4">Frequently Asked Questions</h2>
+          <div className="space-y-4">
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>How do I undo the last commit but keep my changes?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                Run <code className="text-xs">git reset --soft HEAD~1</code> to undo the
+                commit while keeping your changes staged, or{" "}
+                <code className="text-xs">git reset HEAD~1</code> to unstage them. If the
+                commit was already pushed, don&apos;t rewrite history — use{" "}
+                <code className="text-xs">git revert HEAD</code> to add a new commit that
+                undoes it. For a simple message fix, <code className="text-xs">git commit --amend</code>{" "}
+                is enough.
+              </div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>How do I resolve merge conflicts?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                Run <code className="text-xs">git status</code> to list conflicted files.
+                Open each one, remove the{" "}
+                <code className="text-xs">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>,{" "}
+                <code className="text-xs">=======</code>, and{" "}
+                <code className="text-xs">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> markers, and
+                keep the version(s) you want. Stage with{" "}
+                <code className="text-xs">git add</code>, then finish with{" "}
+                <code className="text-xs">git commit</code>. To bail out entirely, run{" "}
+                <code className="text-xs">git merge --abort</code>. To take one side
+                wholesale: <code className="text-xs">git checkout --ours &lt;file&gt;</code>{" "}
+                or <code className="text-xs">git checkout --theirs &lt;file&gt;</code>.
+              </div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>What&apos;s the difference between git fetch and git pull?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                <code className="text-xs">git fetch</code> downloads new commits into
+                remote-tracking branches (like <code className="text-xs">origin/main</code>)
+                without touching your working tree. <code className="text-xs">git pull</code>{" "}
+                is fetch followed by a merge — or a rebase with{" "}
+                <code className="text-xs">git pull --rebase</code>. Fetch when you want to
+                inspect changes first; pull when you&apos;re ready to integrate them into
+                your branch.
+              </div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>How do I recover a deleted branch or lost commits?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                Run <code className="text-xs">git reflog</code> to see every HEAD
+                movement, find the SHA of the commit you lost, then recreate the branch
+                with <code className="text-xs">git branch &lt;name&gt; &lt;sha&gt;</code>{" "}
+                or check it out directly. Reflog entries expire after about 90 days
+                (default), so act quickly before garbage collection removes them.
+              </div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Why does git keep asking me for my password?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                You&apos;re using HTTPS without a credential helper. Set one with{" "}
+                <code className="text-xs">git config --global credential.helper store</code>{" "}
+                (or <code className="text-xs">cache</code> for temporary caching), or
+                switch to SSH keys generated with{" "}
+                <code className="text-xs">ssh-keygen</code>. For HTTPS, GitHub and GitLab
+                now require personal access tokens instead of account passwords.
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html:
+              '{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I undo the last commit but keep my changes?","acceptedAnswer":{"@type":"Answer","text":"Run git reset --soft HEAD~1 to undo the commit while keeping changes staged, or git reset HEAD~1 to unstage them. If the commit was already pushed, use git revert HEAD to add a new commit that undoes it instead of rewriting history."}},{"@type":"Question","name":"How do I resolve merge conflicts?","acceptedAnswer":{"@type":"Answer","text":"Run git status to list conflicted files, open each one, and remove the conflict markers keeping the version you want. Stage the file with git add and finish with git commit. Use git merge --abort to cancel the merge, or git checkout --ours and --theirs to pick one side."}},{"@type":"Question","name":"What is the difference between git fetch and git pull?","acceptedAnswer":{"@type":"Answer","text":"git fetch downloads new commits from the remote without touching your working tree. git pull runs fetch followed by a merge, or a rebase with --rebase. Use fetch to inspect changes first and pull to integrate them."}},{"@type":"Question","name":"How do I recover a deleted branch or lost commits?","acceptedAnswer":{"@type":"Answer","text":"Run git reflog to find the commit SHA, then recreate the branch with git branch <name> <sha>. Reflog entries expire after about 90 days, so act quickly."}},{"@type":"Question","name":"Why does git keep asking me for my password?","acceptedAnswer":{"@type":"Answer","text":"You are using HTTPS without a credential helper. Configure one with git config --global credential.helper store, switch to SSH keys, or use a personal access token instead of a password for HTTPS."}}]}',
+          }}
+        />
 
         <div className="border-t border-[#334155] pt-6 mt-8">
           <p className="text-xs text-[#64748b]">

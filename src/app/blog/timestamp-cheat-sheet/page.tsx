@@ -249,6 +249,135 @@ println!("{}", now.as_millis());      // ms`}</code></pre>
           </ul>
         </div>
 
+        <h2>Common Mistakes &amp; How to Avoid Them</h2>
+        <p>
+          Even experienced developers hit these timestamp traps. Here are the four most common bugs
+          and how to fix them.
+        </p>
+
+        <h3>1. Comparing seconds with milliseconds</h3>
+        <p>
+          The classic JWT bug: <code className="text-xs">exp</code> is in <strong>seconds</strong> but{" "}
+          <code className="text-xs">Date.now()</code> returns <strong>milliseconds</strong>. The
+          comparison always evaluates the wrong way — silently.
+        </p>
+        <pre className="bg-[#1e293b] border border-[#334155] rounded-lg p-4 text-sm overflow-x-auto"><code>{`// BUG: exp (seconds) vs Date.now() (ms) — token always looks expired
+if (Date.now() > jwt.exp) { /* reject */ }
+
+// FIX: convert exp to milliseconds first
+if (Date.now() > jwt.exp * 1000) { /* correct */ }`}</code></pre>
+
+        <h3>2. Passing timestamps to Date() as strings</h3>
+        <p>
+          <code className="text-xs">new Date("1782000000")</code> does <strong>not</strong> parse a
+          numeric timestamp — it tries to parse a date string and returns{" "}
+          <code className="text-xs">Invalid Date</code> in most engines. Pass a number, and remember
+          that JS <code className="text-xs">Date</code> works in milliseconds.
+        </p>
+        <pre className="bg-[#1e293b] border border-[#334155] rounded-lg p-4 text-sm overflow-x-auto"><code>{`new Date("1782000000")      // Invalid Date — string, not number
+new Date(1782000000)        // 1970-01-21 — seconds treated as ms!
+new Date(1782000000 * 1000) // correct for seconds input`}</code></pre>
+
+        <h3>3. Rounding negative timestamps</h3>
+        <p>
+          Pre-1970 timestamps are negative. <code className="text-xs">Math.round(-0.6)</code> gives{" "}
+          <code className="text-xs">-1</code> and <code className="text-xs">Math.floor(-0.6)</code>{" "}
+          also gives <code className="text-xs">-1</code> — both shift the second. Use{" "}
+          <code className="text-xs">Math.trunc</code> (or integer division) when converting float
+          seconds to integers so the value stays stable.
+        </p>
+
+        <h3>4. Storing timestamps in 32-bit columns</h3>
+        <p>
+          MySQL <code className="text-xs">INT</code> and PostgreSQL{" "}
+          <code className="text-xs">integer</code> max out at{" "}
+          <code className="text-xs">2,147,483,647</code> — that is January 19, 2038. Use{" "}
+          <code className="text-xs">BIGINT</code> for Unix seconds (or the database native timestamp
+          type) so your schema survives the 2038 rollover.
+        </p>
+
+        <section className="mt-10 pt-8 border-t border-[#334155]">
+          <h2 className="text-2xl font-bold text-white mb-4">Frequently Asked Questions</h2>
+          <div className="space-y-4">
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>How do I tell if a timestamp is in seconds or milliseconds?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                Count the digits. Seconds timestamps for the current era have 10 digits (about 1.78
+                billion), while milliseconds timestamps have 13 digits (about 1.78 trillion). If the
+                value is near <code className="text-xs">1,700,000,000</code> it is seconds; if it is
+                near <code className="text-xs">1,700,000,000,000</code> it is milliseconds. JWT
+                claims (<code className="text-xs">exp</code>, <code className="text-xs">iat</code>,
+                <code className="text-xs">nbf</code>) always use seconds.
+              </div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>What is the Year 2038 problem and should I worry about it?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                On January 19, 2038 at 03:14:07 UTC, a signed 32-bit integer reaches its maximum
+                value (<code className="text-xs">2,147,483,647</code>) and overflows, breaking
+                systems that store timestamps in 32-bit integers. Modern 64-bit systems are safe for
+                about 292 billion years. Check embedded devices, old embedded databases, and legacy
+                APIs — and always use 64-bit types or BIGINT columns in new code.
+              </div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>How do I convert a Unix timestamp to a specific time zone?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                A Unix timestamp is a single instant in UTC — it has no time zone of its own. The
+                time zone only matters when formatting for display. In JavaScript use{" "}
+                <code className="text-xs">toLocaleString()</code> or{" "}
+                <code className="text-xs">Intl.DateTimeFormat</code>; in Python pass{" "}
+                <code className="text-xs">tz</code> to{" "}
+                <code className="text-xs">datetime.fromtimestamp()</code>. Keep timestamps and ISO
+                strings in UTC for storage and only convert at the presentation layer.
+              </div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Why does new Date(1782000000) return a date in 1970?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                JavaScript <code className="text-xs">Date</code> counts <strong>milliseconds</strong>{" "}
+                since the epoch, so <code className="text-xs">1782000000</code> is only about 20.6
+                days after January 1, 1970. Multiply seconds by 1000 first:{" "}
+                <code className="text-xs">new Date(1782000000 * 1000)</code>. This is the single most
+                common timestamp bug in JavaScript.
+              </div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Can a Unix timestamp be negative?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                Yes. Any instant before January 1, 1970 UTC is a negative number — for example,
+                December 31, 1969 23:59:00 UTC is <code className="text-xs">-60</code>. Some older
+                systems and naive parsers reject negative values, and rounding functions behave
+                differently on negatives, so handle them explicitly if your data can predate 1970
+                (birth dates, historical records, and so on).
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html:
+              '{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I tell if a timestamp is in seconds or milliseconds?","acceptedAnswer":{"@type":"Answer","text":"Count the digits. Seconds timestamps for the current era have 10 digits (about 1.78 billion), while milliseconds timestamps have 13 digits (about 1.78 trillion). JWT claims (exp, iat, nbf) always use seconds."}},{"@type":"Question","name":"What is the Year 2038 problem and should I worry about it?","acceptedAnswer":{"@type":"Answer","text":"On January 19, 2038 at 03:14:07 UTC, a signed 32-bit integer reaches its maximum value (2,147,483,647) and overflows, breaking systems that store timestamps in 32-bit integers. Modern 64-bit systems are safe for about 292 billion years. Use 64-bit types or BIGINT columns in new code."}},{"@type":"Question","name":"How do I convert a Unix timestamp to a specific time zone?","acceptedAnswer":{"@type":"Answer","text":"A Unix timestamp is a single instant in UTC — it has no time zone of its own. The time zone only matters when formatting for display. In JavaScript use toLocaleString() or Intl.DateTimeFormat; in Python pass tz to datetime.fromtimestamp(). Keep timestamps and ISO strings in UTC for storage."}},{"@type":"Question","name":"Why does new Date(1782000000) return a date in 1970?","acceptedAnswer":{"@type":"Answer","text":"JavaScript Date counts milliseconds since the epoch, so 1782000000 is only about 20.6 days after January 1, 1970. Multiply seconds by 1000 first: new Date(1782000000 * 1000)."}},{"@type":"Question","name":"Can a Unix timestamp be negative?","acceptedAnswer":{"@type":"Answer","text":"Yes. Any instant before January 1, 1970 UTC is a negative number — December 31, 1969 23:59:00 UTC is -60. Handle negative values explicitly if your data can predate 1970."}}]}',
+          }}
+        />
+
         <div className="border-t border-[#334155] pt-6 mt-8">
           <p className="text-xs text-[#64748b]">
             <strong>Related Tools:</strong>{" "}

@@ -104,6 +104,66 @@ export default function PrivacyFirstDevTools() {
           Most online developer tools don't <em>need</em> to send your data anywhere. Between JavaScript's built-in APIs and modern WebAssembly, anything from JSON parsing to AI image processing can run locally. The next time you need a quick developer tool, choose one that keeps your data where it belongs — on your machine.
         </p>
 
+        <h2 className="text-xl font-semibold text-white mt-10 mb-4">
+          Practical Tips: Verify Privacy Yourself
+        </h2>
+        <ul className="list-disc pl-5 space-y-1.5">
+          <li><strong>Disconnect your internet</strong> and test the tool — a truly local tool keeps working offline.</li>
+          <li><strong>Open DevTools → Network</strong> and watch for outgoing requests while you use the tool. Zero requests = zero uploads.</li>
+          <li><strong>Read the privacy statement</strong> — look for explicit "client-side only" or "processed locally" wording.</li>
+          <li><strong>Prefer open-source tools</strong> — auditable code is the strongest privacy guarantee.</li>
+          <li><strong>Avoid shared computers</strong> for highly sensitive data, and clear browser storage when you are done.</li>
+        </ul>
+        <pre className="bg-[#1e293b] border border-[#334155] rounded-lg p-4 text-sm overflow-x-auto"><code>{`// DevTools Console: list external resources the tool fetched
+performance.getEntriesByType('resource')
+  .filter(r => !r.name.startsWith(location.origin));
+// Empty array → no data left your machine`}</code></pre>
+
+        <section className="mt-10 pt-8 border-t border-[#334155]">
+          <h2 className="text-2xl font-bold text-white mb-4">Frequently Asked Questions</h2>
+          <div className="space-y-4">
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Do these tools really avoid uploading my data?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                Yes — the core work runs on browser-native APIs (JSON.parse, btoa/atob, RegExp, and
+                WebAssembly AI models) entirely on your device. You can verify by disconnecting your
+                network and confirming the tool still works.
+              </div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Is it safe to process data locally in the browser?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                Local processing is safer than server uploads — no network transmission means there
+                is nothing to intercept, log, or leak in transit. The AI photo model is the
+                open-source ONNX Runtime Web, running in a sandboxed WebAssembly context. Just
+                avoid untrusted browser extensions.
+              </div>
+            </details>
+            <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
+              <summary className="flex items-center justify-between px-4 py-3 text-sm text-white cursor-pointer hover:bg-[#334155] transition-colors list-none">
+                <span>Why not just use server-side tools?</span>
+                <svg className="w-4 h-4 text-[#64748b] group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+              </summary>
+              <div className="px-4 pb-3 text-xs text-[#94a3b8] leading-relaxed">
+                Server-side tools require sending your data to third-party servers that may log,
+                analyze, or sell it, and they add latency plus downtime risk. Local tools are
+                instant, work offline, and keep your data on your machine.
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: '{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do these tools really avoid uploading my data?","acceptedAnswer":{"@type":"Answer","text":"Yes. All processing uses browser-native APIs such as JSON.parse, btoa, atob, RegExp, and WebAssembly models that run locally. You can verify by disconnecting your network and testing the tool."}},{"@type":"Question","name":"Is it safe to process data locally in the browser?","acceptedAnswer":{"@type":"Answer","text":"Local processing is safer than uploading to a server because there is no network transmission, so there is nothing to intercept or log. Use a trusted browser without malicious extensions for best results."}},{"@type":"Question","name":"Why not just use server-side tools?","acceptedAnswer":{"@type":"Answer","text":"Server-side tools require sending your data to third-party servers that may log, analyze, or sell it. Local tools work offline with zero latency and keep your data on your machine."}}]}'}}
+        />
+
         <div className="mt-10 pt-6 border-t border-[#334155]">
           <p className="text-xs text-[#64748b]">
             <strong>Related Tools:</strong>{" "}
