@@ -3,6 +3,24 @@ import AdSlot from "@/components/AdSlot";
 
 const ARTICLES = [
   {
+    title: "JWT vs OAuth2: What's the Difference and When to Use Each?",
+    desc: "Compare JWT (token format) vs OAuth2 (authorization framework): roles, scopes, flows, and how they work together for third-party login.",
+    href: "/blog/jwt-vs-oauth2",
+    tag: "Comparison",
+    date: "Aug 25, 2026",
+    readTime: "8 min",
+    color: "from-rose-500 to-pink-500",
+  },
+  {
+    title: "SQL vs NoSQL: Which Database Should You Choose in 2026?",
+    desc: "Compare relational vs non-relational databases: schema, ACID transactions, horizontal scaling, and when to choose each for your project.",
+    href: "/blog/sql-vs-nosql",
+    tag: "Comparison",
+    date: "Aug 25, 2026",
+    readTime: "9 min",
+    color: "from-blue-500 to-cyan-500",
+  },
+  {
     title: "JWT vs Session: Which Authentication Method Should You Use?",
     desc: "Compare stateless JWT vs stateful sessions: scalability, security, CSRF protection, revocation, and when to choose each for your project.",
     href: "/blog/jwt-vs-session",
