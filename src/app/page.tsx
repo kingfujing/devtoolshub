@@ -3,6 +3,24 @@ import AdSlot from "@/components/AdSlot";
 
 const ARTICLES = [
   {
+    title: "JWT vs Session: Which Authentication Method Should You Use?",
+    desc: "Compare stateless JWT vs stateful sessions: scalability, security, CSRF protection, revocation, and when to choose each for your project.",
+    href: "/blog/jwt-vs-session",
+    tag: "Comparison",
+    date: "Aug 25, 2026",
+    readTime: "8 min",
+    color: "from-rose-500 to-pink-500",
+  },
+  {
+    title: "JSON vs YAML: Which Data Format Should You Use?",
+    desc: "Compare JSON and YAML for config files and APIs: readability, comments, anchors, parse speed, and when to choose each format.",
+    href: "/blog/json-vs-yaml",
+    tag: "Comparison",
+    date: "Aug 25, 2026",
+    readTime: "7 min",
+    color: "from-cyan-500 to-blue-500",
+  },
+  {
     title: "SQL Query Cheat Sheet for Developers",
     desc: "Essential SQL query reference. SELECT, JOIN, GROUP BY, window functions, subqueries, and query optimization tips for daily development.",
     href: "/blog/sql-query-cheat-sheet",
