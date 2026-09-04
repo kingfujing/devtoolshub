@@ -14,6 +14,15 @@ export const metadata: Metadata = {
 
 const ARTICLES = [
   {
+    title: "REST vs GraphQL: Which API Style Should You Use in 2026?",
+    desc: "Compare REST and GraphQL: endpoints vs single schema, over-fetching, caching, versioning, N+1 resolvers, and when to choose each.",
+    href: "/blog/rest-vs-graphql",
+    tag: "Comparison",
+    date: "Sep 4, 2026",
+    readTime: "9 min",
+    color: "from-blue-500 to-cyan-500",
+  },
+  {
     title: "JWT vs OAuth2: What's the Difference and When to Use Each?",
     desc: "Compare JWT (token format) vs OAuth2 (authorization framework): roles, scopes, flows, and how they work together for third-party login.",
     href: "/blog/jwt-vs-oauth2",
