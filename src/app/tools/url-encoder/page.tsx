@@ -152,6 +152,39 @@ export default function UrlEncoderPage() {
       </section>
 
       <section className="mt-10 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">How to Use</h2>
+        <ol className="space-y-2 text-[#94a3b8] text-sm leading-relaxed list-decimal list-inside">
+          <li>Paste the text or URL segment to convert.</li>
+          <li>Choose Component mode for query parameter values, or full URI mode to keep structural characters.</li>
+          <li>Click Encode or Decode — or use Swap to reverse direction.</li>
+          <li>Copy the result into your link, config or code.</li>
+        </ol>
+        <p className="mt-3 text-xs text-[#64748b]">Tip: Anything that goes inside a query parameter value should use Component mode, always.</p>
+      </section>
+
+      <section className="mt-10 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">Common Mistakes</h2>
+        <div className="space-y-3">
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">1. Wrong mode for query values</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">Full-URI mode preserves the ampersand, equals sign and question mark. Inside a parameter value those characters must be encoded, or they will split your query string apart.</p>
+          </div>
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">2. Double encoding</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">Encoding an already-encoded string turns spaces into the percent-twenty-five sequence. Decode first, then encode once — the percent sign is itself encoded.</p>
+          </div>
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">3. Treating plus as space</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">The plus sign means space only inside form-encoded bodies, not in standard percent-encoding. Decoding a URL-encoded path with form rules corrupts plus signs that were meant literally.</p>
+          </div>
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">4. Encoding the whole URL</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">Encoding an entire URL including its scheme and slashes breaks the link structure. Encode the parts, not the address.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-10 pt-8 border-t border-[#334155]">
         <h2 className="text-xl font-semibold text-white mb-4">Frequently Asked Questions</h2>
         <div className="space-y-4">
           <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">

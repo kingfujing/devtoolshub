@@ -290,6 +290,39 @@ export default function TimestampPage() {
       </section>
 
       <section className="mt-10 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">How to Use</h2>
+        <ol className="space-y-2 text-[#94a3b8] text-sm leading-relaxed list-decimal list-inside">
+          <li>Paste a Unix timestamp — the tool auto-detects seconds versus milliseconds.</li>
+          <li>Or pick a date and time, then convert in the opposite direction.</li>
+          <li>Use the Now button to grab the current timestamp instantly.</li>
+          <li>Copy any of the formatted outputs for your code or config.</li>
+        </ol>
+        <p className="mt-3 text-xs text-[#64748b]">Tip: A ten-digit timestamp is in seconds; thirteen digits means milliseconds. That single check prevents most bugs.</p>
+      </section>
+
+      <section className="mt-10 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">Common Mistakes</h2>
+        <div className="space-y-3">
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">1. Mixing seconds and milliseconds</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">Passing a millisecond value to an API that expects seconds puts you in the far future. Count the digits before you convert.</p>
+          </div>
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">2. Ignoring time zones</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">Unix timestamps are always UTC. The same instant prints different local dates in Tokyo and New York — store timestamps, convert only for display.</p>
+          </div>
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">3. Ambiguous date strings</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">Parsing a date-only string in JavaScript yields different results depending on format, because the spec treats date-only forms as UTC midnight. Be explicit about the zone.</p>
+          </div>
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">4. Zero-based months</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">When constructing dates manually in JavaScript, month numbering starts at zero. January being month one is the classic off-by-one crash.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-10 pt-8 border-t border-[#334155]">
         <h2 className="text-xl font-semibold text-white mb-4">Frequently Asked Questions</h2>
         <div className="space-y-4">
           <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">

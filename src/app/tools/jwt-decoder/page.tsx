@@ -226,6 +226,39 @@ export default function JwtDecoderPage() {
       </section>
 
       <section className="mt-10 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">How to Use</h2>
+        <ol className="space-y-2 text-[#94a3b8] text-sm leading-relaxed list-decimal list-inside">
+          <li>Paste the JWT token into the input box.</li>
+          <li>Inspect the decoded header, payload and signature in separate panels.</li>
+          <li>Check the expiry claim — the tool flags expired tokens in red.</li>
+          <li>Use the sample token button to see a well-formed example.</li>
+        </ol>
+        <p className="mt-3 text-xs text-[#64748b]">Tip: Decoding shows what the token claims — it never proves the claims are true. Signature verification happens on your server.</p>
+      </section>
+
+      <section className="mt-10 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">Common Mistakes</h2>
+        <div className="space-y-3">
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">1. Trusting decoded claims</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">Decoding is not verification. Anyone can craft a token with any payload, so every claim must be checked against a verified signature on the backend before access is granted.</p>
+          </div>
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">2. Storing sensitive data in the payload</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">The payload is plain Base64 — readable by anyone who holds the token. Personal data, secrets and internal identifiers do not belong there.</p>
+          </div>
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">3. Seconds versus milliseconds</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">The expiry and issued-at claims use seconds since the epoch, while JavaScript timestamps are milliseconds. Compare like with like or every token looks expired or eternally valid.</p>
+          </div>
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">4. Accepting any algorithm</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">Servers must pin the expected signing algorithm. Attacks have exploited tokens that switch the header algorithm to none and slip through unverified.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-10 pt-8 border-t border-[#334155]">
         <h2 className="text-xl font-semibold text-white mb-4">Frequently Asked Questions</h2>
         <div className="space-y-4">
           <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">

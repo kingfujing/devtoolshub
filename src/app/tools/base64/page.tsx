@@ -140,6 +140,39 @@ export default function Base64Page() {
       </section>
 
       <section className="mt-10 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">How to Use</h2>
+        <ol className="space-y-2 text-[#94a3b8] text-sm leading-relaxed list-decimal list-inside">
+          <li>Paste the text or Base64 string into the input box.</li>
+          <li>The tool auto-detects whether to encode or decode, or switch modes manually.</li>
+          <li>Unicode, Chinese and special characters are supported in both directions.</li>
+          <li>Click the output to copy the converted string.</li>
+        </ol>
+        <p className="mt-3 text-xs text-[#64748b]">Tip: Encoding an encoded string doubles it up — if your output still looks like Base64, you probably encoded twice.</p>
+      </section>
+
+      <section className="mt-10 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">Common Mistakes</h2>
+        <div className="space-y-3">
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">1. Treating Base64 as encryption</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">Base64 is an encoding, not encryption. It provides zero confidentiality — anyone can decode it instantly. Never use it to protect secrets.</p>
+          </div>
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">2. Broken whitespace</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">Line breaks and spaces inside a Base64 string make strict decoders fail. Real-world PEM files include newlines every 64 characters and must be stripped first.</p>
+          </div>
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">3. Corrupted Unicode</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">The browser btoa/atob functions only handle Latin1 characters. Naive snippets corrupt Chinese and emoji — this tool routes through UTF-8 properly.</p>
+          </div>
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">4. Missing padding</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">Strict libraries require the trailing = padding characters, and URL-safe variants swap the plus and slash symbols. Mixing the two alphabets silently breaks decoding.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-10 pt-8 border-t border-[#334155]">
         <h2 className="text-xl font-semibold text-white mb-4">Frequently Asked Questions</h2>
         <div className="space-y-4">
           <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">

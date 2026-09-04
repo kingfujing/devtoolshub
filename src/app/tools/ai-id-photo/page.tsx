@@ -261,6 +261,39 @@ export default function AIPhotoTool() {
       </section>
 
       <section className="mt-10 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">How to Use</h2>
+        <ol className="space-y-2 text-[#94a3b8] text-sm leading-relaxed list-decimal list-inside">
+          <li>Upload a front-facing photo with even lighting and a plain background.</li>
+          <li>The background removal runs locally in your browser — the image never uploads.</li>
+          <li>Pick the print size you need, such as one-inch or two-inch.</li>
+          <li>Export the finished photo for printing or online submission.</li>
+        </ol>
+        <p className="mt-3 text-xs text-[#64748b]">Tip: Shoot against a plain wall in daylight — clean input is what makes the cutout look professional.</p>
+      </section>
+
+      <section className="mt-10 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">Common Mistakes</h2>
+        <div className="space-y-3">
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">1. Busy backgrounds</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">Patterned walls, other people or strong shadows confuse background separation and leave fringes. A plain, evenly lit wall gives a clean cut every time.</p>
+          </div>
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">2. Wrong pose or expression</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">Official photo rules usually require a neutral expression, both ears visible and no headwear. Check the destination requirements before exporting.</p>
+          </div>
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">3. Low-resolution source</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">A photo from an old video call looks fine on screen but turns blurry when printed at photo size. Use the rear camera of any phone from the last few years.</p>
+          </div>
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">4. Assuming uploads are safe everywhere</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">Most online ID tools send your face to unknown servers. This tool processes everything locally, which is exactly why it fits for sensitive documents.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-10 pt-8 border-t border-[#334155]">
         <h2 className="text-xl font-semibold text-white mb-4">Frequently Asked Questions</h2>
         <div className="space-y-4">
           <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">

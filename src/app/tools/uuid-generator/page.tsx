@@ -126,6 +126,38 @@ export default function UuidGeneratorPage() {
       </section>
 
       <section className="mt-10 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">How to Use</h2>
+        <ol className="space-y-2 text-[#94a3b8] text-sm leading-relaxed list-decimal list-inside">
+          <li>Choose how many UUIDs you need, from one up to a hundred.</li>
+          <li>Click Generate to produce random version-4 UUIDs.</li>
+          <li>Click Copy to grab the whole list, one identifier per line.</li>
+        </ol>
+        <p className="mt-3 text-xs text-[#64748b]">Tip: Generate a few spares — one discarded UUID costs nothing, a recycled one can cost a database migration.</p>
+      </section>
+
+      <section className="mt-10 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">Common Mistakes</h2>
+        <div className="space-y-3">
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">1. Using UUIDs as secrets</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">A random UUID is hard to guess but it is not a security token. Session identifiers and API keys need a cryptographically managed secret store, not a public ID format.</p>
+          </div>
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">2. Storing as plain text</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">Most databases store UUIDs in a wide character column, which bloats indexes. A binary sixteen-byte column type halves the size and speeds up lookups.</p>
+          </div>
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">3. Random UUIDs as primary keys</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">Version-4 identifiers land at random positions, fragmenting database indexes under heavy insert load. Time-ordered identifiers such as UUIDv7 keep the index pages warm.</p>
+          </div>
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">4. Assuming absolute uniqueness</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">Collision probability is astronomically small but not zero. Systems that demand hard guarantees still need a database constraint as the final backstop.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-10 pt-8 border-t border-[#334155]">
         <h2 className="text-xl font-semibold text-white mb-4">Frequently Asked Questions</h2>
         <div className="space-y-4">
           <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">

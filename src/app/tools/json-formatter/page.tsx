@@ -133,6 +133,39 @@ export default function JsonFormatterPage() {
       </section>
 
       <section className="mt-10 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">How to Use</h2>
+        <ol className="space-y-2 text-[#94a3b8] text-sm leading-relaxed list-decimal list-inside">
+          <li>Paste your JSON into the left editor, or type it directly.</li>
+          <li>Pick an indent size: 2 or 4 spaces for readability, Minified for production payloads.</li>
+          <li>Click Format to beautify, Compress to strip all whitespace, or Validate to check syntax only.</li>
+          <li>Click the output area to copy the result straight to your clipboard.</li>
+        </ol>
+        <p className="mt-3 text-xs text-[#64748b]">Tip: Validate is the fastest way to check a config file before committing it.</p>
+      </section>
+
+      <section className="mt-10 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">Common Mistakes</h2>
+        <div className="space-y-3">
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">1. Single quotes instead of double quotes</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">JSON requires double quotes around keys and string values. Pasting JavaScript source with single quotes fails to parse — convert the quotes first.</p>
+          </div>
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">2. Trailing commas</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">A comma after the last property breaks every strict JSON parser, even though JavaScript objects tolerate it. Watch for it when editing files by hand.</p>
+          </div>
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">3. Unquoted keys</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">Syntax like an unquoted key name is valid JavaScript object notation but invalid JSON. Every key must be a wrapped string.</p>
+          </div>
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">4. Comments in JSON</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">JSON has no comment syntax. If a config file contains comment lines, strip them before validating or feeding the file to any parser.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-10 pt-8 border-t border-[#334155]">
         <h2 className="text-xl font-semibold text-white mb-4">Frequently Asked Questions</h2>
         <div className="space-y-4">
           <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">

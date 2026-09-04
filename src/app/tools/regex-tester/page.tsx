@@ -227,6 +227,39 @@ export default function RegexTesterPage() {
       </section>
 
       <section className="mt-10 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">How to Use</h2>
+        <ol className="space-y-2 text-[#94a3b8] text-sm leading-relaxed list-decimal list-inside">
+          <li>Enter your pattern in the regex field and pick the flags you need.</li>
+          <li>Type or paste the test text below it — matches highlight in real time.</li>
+          <li>Toggle flags like global, case-insensitive or multiline to see how behavior changes.</li>
+          <li>Named capture groups appear separately for quick reference.</li>
+        </ol>
+        <p className="mt-3 text-xs text-[#64748b]">Tip: If nothing matches, check whether a dot or star should be escaped with a backslash.</p>
+      </section>
+
+      <section className="mt-10 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">Common Mistakes</h2>
+        <div className="space-y-3">
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">1. Unescaped metacharacters</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">Dots, stars, pluses and question marks are pattern operators. To match them literally, escape each one with a backslash — a bare dot matches any character.</p>
+          </div>
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">2. Greedy overmatching</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">A greedy dot-star grabs as much as it can, often swallowing more than you intended across a line or document. Use the lazy variant to stop at the first closing tag.</p>
+          </div>
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">3. Catastrophic backtracking</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">Nested quantifiers on overlapping character classes can freeze the regex engine on certain inputs. Simplify the pattern or add anchors to keep matching linear.</p>
+          </div>
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">4. Forgetting the multiline flag</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">By default the caret and dollar signs anchor to the whole string only. With multiline text, enable the m flag so they anchor to each line.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-10 pt-8 border-t border-[#334155]">
         <h2 className="text-xl font-semibold text-white mb-4">Frequently Asked Questions</h2>
         <div className="space-y-4">
           <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">

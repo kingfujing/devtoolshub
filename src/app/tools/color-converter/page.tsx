@@ -298,6 +298,39 @@ export default function ColorConverterPage() {
       </section>
 
       <section className="mt-10 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">How to Use</h2>
+        <ol className="space-y-2 text-[#94a3b8] text-sm leading-relaxed list-decimal list-inside">
+          <li>Paste a color in HEX, RGB or HSL — the format is auto-detected.</li>
+          <li>The converted values update live in all three notations.</li>
+          <li>Check the preview block to see the color at full size.</li>
+          <li>Click any output to copy it in your preferred format.</li>
+        </ol>
+        <p className="mt-3 text-xs text-[#64748b]">Tip: Design tokens usually live in HEX, while CSS animation prefers HSL because lightness adjusts independently of hue.</p>
+      </section>
+
+      <section className="mt-10 pt-8 border-t border-[#334155]">
+        <h2 className="text-xl font-semibold text-white mb-4">Common Mistakes</h2>
+        <div className="space-y-3">
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">1. Short and long HEX confusion</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">Three-digit HEX is a shorthand that doubles each digit. It covers fewer colors than six-digit notation — expand it before comparing values.</p>
+          </div>
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">2. Dropping the alpha channel</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">Eight-digit HEX and the rgba function carry transparency. Converting through a tool that ignores alpha silently makes colors opaque.</p>
+          </div>
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">3. Mixing HSL units</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">Hue runs from zero to three sixty degrees, but saturation and lightness are percentages. Feeding raw integers into functions expecting percentages shifts colors unpredictably.</p>
+          </div>
+          <div className="rounded-lg bg-[#1e293b] border border-[#334155] p-4">
+            <p className="text-white text-sm font-medium">4. Rounding drift</p>
+            <p className="text-[#94a3b8] text-xs mt-1 leading-relaxed">Converting back and forth between notations rounds numbers each time, and the color slowly drifts away from the original. Keep one canonical format as your source of truth.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-10 pt-8 border-t border-[#334155]">
         <h2 className="text-xl font-semibold text-white mb-4">Frequently Asked Questions</h2>
         <div className="space-y-4">
           <details className="group rounded-lg bg-[#1e293b] border border-[#334155] overflow-hidden">
