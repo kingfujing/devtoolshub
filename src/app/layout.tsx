@@ -16,7 +16,10 @@ export const metadata: Metadata = {
     type: "website",
   },
   verification: {
-    google: "AdsNHqKjoPD24P5hM04e4DI5IZ7vat_FszS4177L29k",
+    google: [
+      "AdsNHqKjoPD24P5hM04e4DI5IZ7vat_FszS4177L29k", // 旧验证（老属性/AdSense关联，保留）
+      "BOJiEatJVKMw4D55EzWBTCm_dnMSs5h9l40b1jVwLPs", // devtoolshub.cloud GSC属性（2026-10-13）
+    ],
   },
 };
 
