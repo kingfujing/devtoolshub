@@ -32,6 +32,7 @@ const TOOLS = [
   { name: "Color Converter", href: "/tools/color-converter", icon: "🎨" },
   { name: "URL Encoder", href: "/tools/url-encoder", icon: "🔗" },
   { name: "JWT Decoder", href: "/tools/jwt-decoder", icon: "🔐" },
+  { name: "Token Counter", href: "/tools/token-counter", icon: "🪙" },
 ];
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

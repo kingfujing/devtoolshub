@@ -248,6 +248,13 @@ const TOOLS = [
     icon: "📷",
     color: "from-sky-500 to-indigo-500",
   },
+  {
+    name: "Token Counter",
+    desc: "Estimate AI token usage and context window fit for GPT, Claude and Gemini — free and 100% in-browser",
+    href: "/tools/token-counter",
+    icon: "🪙",
+    color: "from-violet-500 to-fuchsia-500",
+  },
 ];
 
 export default function HomePage() {
