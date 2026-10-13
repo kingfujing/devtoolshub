@@ -17,7 +17,7 @@ export default function PrivacyPage() {
           <p>
             DevToolsHub (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) is committed to protecting your privacy.
             This Privacy Policy explains how we collect, use, and safeguard your information when you visit
-            our website at devtoolshub-seven.vercel.app (the &quot;Site&quot;), and it describes the choices
+            our website at devtoolshub.cloud (the &quot;Site&quot;), and it describes the choices
             available to you regarding our use of that information.
           </p>
           <p className="mt-2">
