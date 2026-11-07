@@ -4,6 +4,7 @@ import CookieConsent from "@/components/CookieConsent";
 import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://devtoolshub.cloud"), // 锁死 canonical/og:url 到正式域，防双域名并存时社交卡片落 vercel.app
   title: {
     default: "DevToolsHub — Free Online Developer Tools",
     template: "%s",
