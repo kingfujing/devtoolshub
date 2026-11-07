@@ -11,7 +11,11 @@ export const metadata: Metadata = {
   },
   description: "Free online developer tools: JSON Formatter, Base64 Encoder/Decoder, Regex Tester, UUID Generator, Timestamp Converter and more. All data is processed locally in your browser.",
   keywords: "developer tools, online tools, JSON formatter, Base64, regex tester, UUID generator, timestamp converter, color converter, URL encoder, JWT decoder, dev tools",
+  alternates: {
+    canonical: "/", // 首页 canonical；子页在各 layout/page 的 metadata 里覆写
+  },
   openGraph: {
+    url: "/", // 配合 metadataBase 输出 og:url（Next 只有显式 url 才注入 og:url meta）
     title: "DevToolsHub — Free Online Developer Tools",
     description: "Free online developer tools. All tools run in your browser — your data never touches any server.",
     type: "website",

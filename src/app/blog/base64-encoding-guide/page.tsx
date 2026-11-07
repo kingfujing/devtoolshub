@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/blog/base64-encoding-guide" },
   title: "Base64 Encoding & Decoding: What Every Developer Needs to Know | DevToolsHub",
   description:
     "Learn how Base64 encoding works, when to use it, and common pitfalls. Includes practical examples with data URLs, JWT tokens, and browser APIs.",
   openGraph: {
+    url: "/blog/base64-encoding-guide",
     title: "Base64 Encoding & Decoding: What Every Developer Needs to Know",
     description:
       "Learn how Base64 encoding works, when to use it, and common pitfalls. Practical examples included.",

@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/blog/javascript-array-methods-cheat-sheet" },
   title: "JavaScript Array Methods Cheat Sheet — DevToolsHub",
   description:
     "Complete JavaScript array methods reference with examples. From map() and filter() to flatMap() and toSorted() — every ES6+ array method explained.",
   openGraph: {
+    url: "/blog/javascript-array-methods-cheat-sheet",
     title: "JavaScript Array Methods Cheat Sheet: Complete ES6+ Reference",
     description:
       "Every JavaScript Array prototype method explained with syntax, return values, mutation info, and practical code examples. Covering ES3 through ES2023.",

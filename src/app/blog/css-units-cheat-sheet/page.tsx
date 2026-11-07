@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/blog/css-units-cheat-sheet" },
   title: "CSS Units Cheat Sheet — DevToolsHub",
   description:
     "Complete CSS units reference — absolute vs relative units, viewport units, calc(), and when to use each. Includes practical examples for responsive design.",
   openGraph: {
+    url: "/blog/css-units-cheat-sheet",
     title: "CSS Units Cheat Sheet: Complete Reference for Responsive Design",
     description:
       "Every CSS unit explained with examples. Absolute units (px, pt, cm), relative units (%, em, rem), viewport units (vw, vh, vmin, vmax), and more.",

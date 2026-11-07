@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/blog/rest-vs-graphql" },
   title: "REST vs GraphQL: Which API Style Should You Use in 2026? | DevToolsHub",
   description: "Compare REST and GraphQL: endpoints vs single schema, over-fetching, caching, versioning, N+1 resolvers, and when to choose each. Includes Node.js code examples.",
   openGraph: {
+    url: "/blog/rest-vs-graphql",
     title: "REST vs GraphQL: Which API Style Should You Use in 2026?",
     description: "Compare REST (resource endpoints) vs GraphQL (single typed schema): data fetching, caching, versioning, and real-world use cases.",
     type: "article",

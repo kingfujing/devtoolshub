@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/blog/jwt-vs-session" },
   title: "JWT vs Session: Which Authentication Method Should You Use? | DevToolsHub",
   description: "Compare JWT and session-based authentication: stateless vs stateful, scalability, security, CSRF protection, and when to choose each. Includes code examples.",
   openGraph: {
+    url: "/blog/jwt-vs-session",
     title: "JWT vs Session: Which Authentication Method Should You Use?",
     description: "Compare stateless JWT vs stateful sessions: scalability, security, CSRF, and real-world use cases.",
     type: "article",

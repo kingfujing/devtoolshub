@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/blog/jwt-decoder-guide" },
   title: "JWT Decoder Guide: How to Decode JSON Web Tokens Without a Backend | DevToolsHub",
   description: "Learn how to decode JWT tokens client-side. Understand header, payload, signature, and how to inspect tokens safely without sending them to any server.",
   openGraph: {
+    url: "/blog/jwt-decoder-guide",
     title: "JWT Decoder Guide: Inspect Tokens Without a Backend",
     description: "Decode JWT tokens safely in your browser. Understand headers, claims, signatures, and debugging tips.",
     type: "article",

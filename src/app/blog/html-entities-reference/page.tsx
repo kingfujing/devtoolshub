@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/blog/html-entities-reference" },
   title: "HTML Entities Reference — DevToolsHub",
   description:
     "Complete HTML entities reference with escape codes. Find common symbols, special characters, currency signs, arrows, and mathematical operators.",
   openGraph: {
+    url: "/blog/html-entities-reference",
     title: "HTML Entities Reference: Complete Guide to HTML Escape Codes",
     description:
       "Every HTML entity you need — common symbols, currency signs, arrows, math operators, and punctuation. Includes entity names, numeric codes, and examples.",

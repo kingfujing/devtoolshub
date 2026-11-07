@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/blog/10-free-developer-tools-2026" },
   title: "10 Free Online Developer Tools to Supercharge Your Workflow in 2026 | DevToolsHub",
   description:
     "Discover 10 essential free online developer tools for 2026. From JSON formatting to regex testing — all tools run locally in your browser with zero server uploads.",
   openGraph: {
+    url: "/blog/10-free-developer-tools-2026",
     title: "10 Free Online Developer Tools to Supercharge Your Workflow in 2026",
     description:
       "Discover essential free developer tools for 2026 — all running locally in your browser.",

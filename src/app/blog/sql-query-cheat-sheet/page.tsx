@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/blog/sql-query-cheat-sheet" },
   title: "SQL Query Cheat Sheet — DevToolsHub",
   description:
     "Essential SQL query reference for developers. SELECT, JOIN, GROUP BY, subqueries, window functions, query optimization tips, common mistakes, and a developer FAQ.",
   openGraph: {
+    url: "/blog/sql-query-cheat-sheet",
     title: "SQL Query Cheat Sheet: Essential Reference for Developers",
     description:
       "Every SQL command you need — SELECT, JOIN, GROUP BY, subqueries, window functions, aggregate functions, DML, DDL, optimization tips, common mistakes, and FAQs with practical examples.",

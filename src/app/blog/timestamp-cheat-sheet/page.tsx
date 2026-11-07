@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/blog/timestamp-cheat-sheet" },
   title: "Unix Timestamp Cheat Sheet: Convert, Read, and Debug Timestamps Like a Pro | DevToolsHub",
   description: "A complete guide to Unix timestamps: convert seconds/milliseconds, handle timezones, common pitfalls, and one-liners for every programming language.",
   openGraph: {
+    url: "/blog/timestamp-cheat-sheet",
     title: "Unix Timestamp Cheat Sheet: Convert, Read, and Debug Timestamps",
     description: "Master Unix timestamps with this practical guide. Includes conversion tricks, timezone handling, and code snippets for 8 languages.",
     type: "article",

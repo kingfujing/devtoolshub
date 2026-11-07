@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/blog/http-status-codes-cheat-sheet" },
   title: "HTTP Status Codes Cheat Sheet — DevToolsHub",
   description:
     "Complete HTTP status code reference for developers. Every response code explained — 1xx informational, 2xx success, 3xx redirect, 4xx client error, 5xx server error.",
   openGraph: {
+    url: "/blog/http-status-codes-cheat-sheet",
     title: "HTTP Status Codes Cheat Sheet: Complete Reference for Developers",
     description:
       "Every HTTP status code from 100 to 511 explained. Quick reference tables grouped by category with descriptions and use cases.",

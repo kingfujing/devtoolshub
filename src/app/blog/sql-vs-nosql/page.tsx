@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/blog/sql-vs-nosql" },
   title: "SQL vs NoSQL: Which Database Should You Choose in 2026? | DevToolsHub",
   description: "Compare SQL and NoSQL databases: schema, scalability, transactions, consistency, query capabilities, and when to choose each. Includes code examples and decision guide.",
   openGraph: {
+    url: "/blog/sql-vs-nosql",
     title: "SQL vs NoSQL: Which Database Should You Choose in 2026?",
     description: "Compare relational vs non-relational databases: schema, ACID, horizontal scaling, and real-world use cases.",
     type: "article",

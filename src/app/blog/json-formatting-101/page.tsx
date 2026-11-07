@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/blog/json-formatting-101" },
   title: "JSON Formatting 101: How to Debug JSON Data Like a Pro | DevToolsHub",
   description:
     "Master JSON formatting, validation, and debugging with practical tips. Learn to use a JSON formatter effectively for cleaner API debugging and configuration management.",
   openGraph: {
+    url: "/blog/json-formatting-101",
     title: "JSON Formatting 101: How to Debug JSON Data Like a Pro",
     description:
       "Master JSON formatting and validation. Practical tips for cleaner API debugging.",

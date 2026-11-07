@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/blog/regex-guide" },
   title: "The Complete Guide to Writing Better Regular Expressions | DevToolsHub",
   description:
     "Master regular expressions with practical patterns and real-world examples. Learn regex flags, named groups, lookaheads, and debugging techniques.",
   openGraph: {
+    url: "/blog/regex-guide",
     title: "The Complete Guide to Writing Better Regular Expressions",
     description:
       "Master regex with practical patterns, real-world examples, and debugging techniques.",

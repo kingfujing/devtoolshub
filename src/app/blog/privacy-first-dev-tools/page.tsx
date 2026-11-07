@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/blog/privacy-first-dev-tools" },
   title: "5 Developer Tools That Respect Your Privacy | DevToolsHub",
   description: "Discover developer tools that run entirely in your browser — no server uploads, no data collection, no tracking. Privacy-first tools for modern developers.",
   openGraph: {
+    url: "/blog/privacy-first-dev-tools",
     title: "5 Developer Tools That Respect Your Privacy",
     description: "Tools that respect your data. No uploads, no tracking, no servers.",
     type: "article",

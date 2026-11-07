@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/blog/jwt-vs-oauth2" },
   title: "JWT vs OAuth2: What's the Difference and When to Use Each? | DevToolsHub",
   description: "Compare JWT and OAuth2: token format vs authorization framework, authentication vs authorization, third-party login, scopes, and when to use each. Includes code examples.",
   openGraph: {
+    url: "/blog/jwt-vs-oauth2",
     title: "JWT vs OAuth2: What's the Difference and When to Use Each?",
     description: "Compare JWT (token format) vs OAuth2 (authorization framework): roles, scopes, flows, and real-world use cases.",
     type: "article",

@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/blog/uuid-v4-vs-v7" },
   title: "UUID v4 vs UUID v7: Which One Should You Use? | DevToolsHub",
   description: "Compare UUID v4 and UUID v7: random vs time-ordered, database performance, sortability, and when to choose each. Includes practical code examples.",
   openGraph: {
+    url: "/blog/uuid-v4-vs-v7",
     title: "UUID v4 vs UUID v7: Which One Should You Use?",
     description: "Compare random vs time-ordered UUIDs, database index performance, and real-world use cases.",
     type: "article",

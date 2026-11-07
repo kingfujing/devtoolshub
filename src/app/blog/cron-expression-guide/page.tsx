@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/blog/cron-expression-guide" },
   title: "Cron Expression Guide — DevToolsHub",
   description:
     "Complete cron expression reference. Master cron syntax with examples, special strings, common schedules, troubleshooting tips, common mistakes, and a developer FAQ.",
   openGraph: {
+    url: "/blog/cron-expression-guide",
     title: "Cron Expression Guide: Complete Reference with Examples",
     description:
       "Master cron job scheduling with this comprehensive guide. Covers syntax, special strings, common schedules, troubleshooting, timezone considerations, common mistakes, FAQs, and real-world examples.",

@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/blog/json-vs-yaml" },
   title: "JSON vs YAML: Which Data Format Should You Use? | DevToolsHub",
   description: "Compare JSON and YAML: readability, nesting, comments, anchors, parse speed, and when to choose each for config files and APIs. Includes conversion examples.",
   openGraph: {
+    url: "/blog/json-vs-yaml",
     title: "JSON vs YAML: Which Data Format Should You Use?",
     description: "Compare JSON vs YAML for config files and APIs: readability, anchors, comments, parse speed, and real-world use cases.",
     type: "article",

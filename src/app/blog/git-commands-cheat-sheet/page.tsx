@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/blog/git-commands-cheat-sheet" },
   title: "Git Commands Cheat Sheet — DevToolsHub",
   description:
     "Essential Git commands reference for daily development. From git init to interactive rebase — commands, options, practical examples, common mistakes, and a developer FAQ.",
   openGraph: {
+    url: "/blog/git-commands-cheat-sheet",
     title: "Git Commands Cheat Sheet: Essential Git Reference for Developers",
     description:
       "Every Git command you need for daily work. Setup, staging, branching, remotes, undoing changes, merging, stashing, and logs — with practical examples, common pitfalls, and FAQs.",
