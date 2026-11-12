@@ -2,12 +2,12 @@
 title: "The Complete Guide to Writing Better Regular Expressions"
 description: "Master regex with practical patterns, real-world examples, and debugging techniques. Covers flags, named groups, lookaheads, catastrophic backtracking, and more."
 tags: [webdev, javascript, tutorial, productivity, beginners]
-canonical_url: https://devtoolshub-seven.vercel.app/blog/regex-guide
+canonical_url: https://devtoolshub.cloud/blog/regex-guide
 published: true
-cover_image: https://devtoolshub-seven.vercel.app/og-blog.png
+cover_image: https://devtoolshub.cloud/og-blog.png
 ---
 
-> Originally published on [DevToolsHub](https://devtoolshub-seven.vercel.app/) — a collection of free, privacy-first online developer tools.
+> Originally published on [DevToolsHub](https://devtoolshub.cloud/) — a collection of free, privacy-first online developer tools.
 
 ---
 
@@ -15,7 +15,7 @@ Regular expressions are one of the most powerful — and most intimidating — t
 
 ## Start with a Regex Tester
 
-Never write a complex regex without a tester. Live feedback is essential — it shows you exactly what matches, what does not, and why. The [DevToolsHub Regex Tester](https://devtoolshub-seven.vercel.app/tools/regex-tester) provides real-time highlighting, flag toggles, and named group detection. Always test your pattern against multiple input strings before deploying it.
+Never write a complex regex without a tester. Live feedback is essential — it shows you exactly what matches, what does not, and why. The [DevToolsHub Regex Tester](https://devtoolshub.cloud/tools/regex-tester) provides real-time highlighting, flag toggles, and named group detection. Always test your pattern against multiple input strings before deploying it.
 
 ## Understanding Regex Flags
 
@@ -106,7 +106,7 @@ Even experienced developers write buggy regex on the first try. Always test your
 - **Edge cases** — empty strings, very long strings, strings with special characters
 - **Performance** — test with a large input to catch backtracking issues
 
-Use the [DevToolsHub Regex Tester](https://devtoolshub-seven.vercel.app/tools/regex-tester) to iterate quickly with live match highlighting. The 300ms debounce ensures instant feedback without performance lag.
+Use the [DevToolsHub Regex Tester](https://devtoolshub.cloud/tools/regex-tester) to iterate quickly with live match highlighting. The 300ms debounce ensures instant feedback without performance lag.
 
 ## Final Advice
 
@@ -114,4 +114,4 @@ Regex is a skill you build over time. Start with simple patterns, use named grou
 
 ---
 
-*If you found this guide useful, check out [DevToolsHub](https://devtoolshub-seven.vercel.app/) for more free online developer tools. All tools run locally in your browser — your data never leaves your device.*
+*If you found this guide useful, check out [DevToolsHub](https://devtoolshub.cloud/) for more free online developer tools. All tools run locally in your browser — your data never leaves your device.*

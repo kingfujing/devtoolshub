@@ -2,16 +2,16 @@
 title: "URL Encoding Decoded: A Developer's Guide to encodeURI vs encodeURIComponent"
 description: "Master URL encoding with practical examples. Understand encodeURI vs encodeURIComponent, common pitfalls with special characters, Unicode, and how to debug URL-encoded data like a pro."
 tags: [webdev, javascript, tutorial, beginners]
-canonical_url: https://devtoolshub-seven.vercel.app/blog/url-encoding-guide
+canonical_url: https://devtoolshub.cloud/blog/url-encoding-guide
 published: true
-cover_image: https://devtoolshub-seven.vercel.app/og-image.png
+cover_image: https://devtoolshub.cloud/og-image.png
 ---
 
-> Originally published on [DevToolsHub](https://devtoolshub-seven.vercel.app/blog/url-encoding-guide) — free, privacy-first online tools for developers.
+> Originally published on [DevToolsHub](https://devtoolshub.cloud/blog/url-encoding-guide) — free, privacy-first online tools for developers.
 
 Every developer has seen it: `%20`, `%3A`, `%2F` — URL encoding is everywhere. Whether you're building REST APIs, handling form submissions, parsing query strings, or debugging OAuth redirects, understanding URL encoding is essential.
 
-> 🔧 **Try it yourself:** Use the free [URL Encoder / Decoder](https://devtoolshub-seven.vercel.app/tools/url-encoder) — supports both `encodeURIComponent` and `encodeURI` modes with instant bidirectional conversion. All processing happens in your browser — zero data leaves your machine.
+> 🔧 **Try it yourself:** Use the free [URL Encoder / Decoder](https://devtoolshub.cloud/tools/url-encoder) — supports both `encodeURIComponent` and `encodeURI` modes with instant bidirectional conversion. All processing happens in your browser — zero data leaves your machine.
 
 ---
 
@@ -236,7 +236,7 @@ Building query strings?        → use URLSearchParams() ✓
 3. **Use `URLSearchParams`** — it handles both encoding and parameter formatting
 4. **All encoding/decoding is local** — no server processing required
 
-> 🛠 **Need a quick encode/decode?** Try the [URL Encoder / Decoder](https://devtoolshub-seven.vercel.app/tools/url-encoder) tool — built in the browser, safe with your sensitive data, supports both encoding modes. Also check out [JSON Formatter](https://devtoolshub-seven.vercel.app/tools/json-formatter) and [JWT Decoder](https://devtoolshub-seven.vercel.app/tools/jwt-decoder) for more handy dev tools.
+> 🛠 **Need a quick encode/decode?** Try the [URL Encoder / Decoder](https://devtoolshub.cloud/tools/url-encoder) tool — built in the browser, safe with your sensitive data, supports both encoding modes. Also check out [JSON Formatter](https://devtoolshub.cloud/tools/json-formatter) and [JWT Decoder](https://devtoolshub.cloud/tools/jwt-decoder) for more handy dev tools.
 
 ---
 

@@ -2,18 +2,18 @@
 title: "JWT vs OAuth2: What's the Difference and When to Use Each?"
 description: "Compare JWT and OAuth2: token format vs authorization framework, authentication vs authorization, third-party login, scopes, and when to use each. Includes code examples."
 tags: [webdev, javascript, security, tutorial]
-canonical_url: https://devtoolshub-seven.vercel.app/blog/jwt-vs-oauth2
+canonical_url: https://devtoolshub.cloud/blog/jwt-vs-oauth2
 published: true
-cover_image: https://devtoolshub-seven.vercel.app/og-image.png
+cover_image: https://devtoolshub.cloud/og-image.png
 ---
 
-> Originally published on [DevToolsHub](https://devtoolshub-seven.vercel.app) — free, privacy-first online tools for developers.
+> Originally published on [DevToolsHub](https://devtoolshub.cloud) — free, privacy-first online tools for developers.
 
 JWT and OAuth2 are two of the most confused terms in modern web development. Many developers treat them as interchangeable — but they solve completely different problems. **JWT is a token format**, while **OAuth2 is an authorization framework**. They often work together, which is exactly why the confusion exists.
 
 In this guide, we'll compare JWT and OAuth2 across their roles, use cases, and how they combine — so you know what you're actually implementing in your next project.
 
-> 💡 **Quick Try:** Have a token to inspect? Use our free [JWT Decoder](https://devtoolshub-seven.vercel.app/tools/jwt-decoder) to decode and verify tokens right in your browser.
+> 💡 **Quick Try:** Have a token to inspect? Use our free [JWT Decoder](https://devtoolshub.cloud/tools/jwt-decoder) to decode and verify tokens right in your browser.
 
 ---
 
@@ -139,7 +139,7 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
 
 > 🎯 **Recommendation:** They're not competitors — **they're complementary**. Use **OAuth2** when you need standardized third-party login or scoped access to resources. Use **JWT** as the token format for fast, stateless verification. For most production apps: **OAuth2 for the flow, JWT for the token** — best of both worlds.
 
-Decode and inspect any JWT instantly with our free [online JWT Decoder](https://devtoolshub-seven.vercel.app/tools/jwt-decoder). It runs entirely in your browser — no server uploads, no data leaks.
+Decode and inspect any JWT instantly with our free [online JWT Decoder](https://devtoolshub.cloud/tools/jwt-decoder). It runs entirely in your browser — no server uploads, no data leaks.
 
 ## Common Mistakes & How to Avoid Them
 

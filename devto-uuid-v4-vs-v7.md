@@ -2,18 +2,18 @@
 title: "UUID v4 vs UUID v7: Which One Should You Use?"
 description: "Compare UUID v4 and UUID v7: random vs time-ordered, database performance, sortability, and when to choose each. Includes practical code examples in JS, Python, and PostgreSQL."
 tags: [webdev, javascript, tutorial, database]
-canonical_url: https://devtoolshub-seven.vercel.app/blog/uuid-v4-vs-v7
+canonical_url: https://devtoolshub.cloud/blog/uuid-v4-vs-v7
 published: true
-cover_image: https://devtoolshub-seven.vercel.app/og-image.png
+cover_image: https://devtoolshub.cloud/og-image.png
 ---
 
-> Originally published on [DevToolsHub](https://devtoolshub-seven.vercel.app/blog/uuid-v4-vs-v7) — free, privacy-first online tools for developers.
+> Originally published on [DevToolsHub](https://devtoolshub.cloud/blog/uuid-v4-vs-v7) — free, privacy-first online tools for developers.
 
 UUIDs (Universally Unique Identifiers) are everywhere in modern software development. But not all UUIDs are created equal. With the introduction of **UUID v7** in RFC 9562 (May 2024), developers now have a compelling alternative to the ubiquitous UUID v4.
 
 In this guide, we'll compare UUID v4 and UUID v7 across performance, database impact, sortability, and real-world use cases — so you can make the right choice for your next project.
 
-💡 **Quick Try:** Use our free [UUID Generator](https://devtoolshub-seven.vercel.app/tools/uuid-generator) to generate UUID v4 and v7 right in your browser.
+💡 **Quick Try:** Use our free [UUID Generator](https://devtoolshub.cloud/tools/uuid-generator) to generate UUID v4 and v7 right in your browser.
 
 ---
 
@@ -137,8 +137,8 @@ SELECT gen_random_uuid();
 
 > 🎯 **Recommendation:** For **new projects** that use UUIDs as database primary keys, start with **UUID v7**. The time-ordered structure gives you B-tree friendly insertion without sacrificing the global uniqueness that makes UUIDs valuable. Reserve **UUID v4** for cases where unpredictability is a requirement — API keys, session tokens, or any identifier that must not reveal creation time.
 
-Try generating both UUID versions instantly with our free [online UUID Generator tool](https://devtoolshub-seven.vercel.app/tools/uuid-generator). It runs entirely in your browser — no server uploads, no data leaks.
+Try generating both UUID versions instantly with our free [online UUID Generator tool](https://devtoolshub.cloud/tools/uuid-generator). It runs entirely in your browser — no server uploads, no data leaks.
 
 ---
 
-**Related Tools:** [UUID Generator](https://devtoolshub-seven.vercel.app/tools/uuid-generator) · [Timestamp Converter](https://devtoolshub-seven.vercel.app/tools/timestamp) · [Base64 Encoder/Decoder](https://devtoolshub-seven.vercel.app/tools/base64)
+**Related Tools:** [UUID Generator](https://devtoolshub.cloud/tools/uuid-generator) · [Timestamp Converter](https://devtoolshub.cloud/tools/timestamp) · [Base64 Encoder/Decoder](https://devtoolshub.cloud/tools/base64)

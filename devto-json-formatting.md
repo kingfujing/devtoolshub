@@ -2,12 +2,12 @@
 title: "JSON Formatting 101: How to Format, Validate, and Debug JSON Like a Pro"
 description: "Learn JSON formatting best practices — from pretty-printing and validation to debugging common errors. Includes practical tips every developer should know."
 tags: [webdev, javascript, tutorial, beginners]
-canonical_url: https://devtoolshub-seven.vercel.app/blog/json-formatting-101
+canonical_url: https://devtoolshub.cloud/blog/json-formatting-101
 published: true
-cover_image: https://devtoolshub-seven.vercel.app/og-image.png
+cover_image: https://devtoolshub.cloud/og-image.png
 ---
 
-> Originally published on [DevToolsHub](https://devtoolshub-seven.vercel.app) — free, privacy-first developer tools.
+> Originally published on [DevToolsHub](https://devtoolshub.cloud) — free, privacy-first developer tools.
 
 JSON (JavaScript Object Notation) is the lingua franca of modern web development. APIs, config files, database exports — they all speak JSON. Yet formatting and debugging JSON is something many developers struggle with daily.
 
@@ -106,14 +106,14 @@ JSON only supports: strings, numbers, booleans, null, objects, and arrays.
 
 ## Quick Validation with a Tool
 
-Instead of squinting at your terminal output, use a [JSON Formatter tool](https://devtoolshub-seven.vercel.app/tools/json-formatter) to instantly validate and format:
+Instead of squinting at your terminal output, use a [JSON Formatter tool](https://devtoolshub.cloud/tools/json-formatter) to instantly validate and format:
 
 1. Paste your JSON
 2. The tool immediately shows errors with line numbers
 3. Click "Format" for clean, indented output
 4. Adjust indentation to 2 or 4 spaces as needed
 
-👉 [Try the DevToolsHub JSON Formatter](https://devtoolshub-seven.vercel.app/tools/json-formatter) — it's free, runs in your browser, and your data never leaves the page.
+👉 [Try the DevToolsHub JSON Formatter](https://devtoolshub.cloud/tools/json-formatter) — it's free, runs in your browser, and your data never leaves the page.
 
 ## Indentation Showdown: 2 vs 4 Spaces
 
@@ -156,10 +156,10 @@ JSON is the default format for REST APIs, WebSocket messages, and server-sent ev
 | Formatting | Always format for readability |
 | Validation | Check for trailing commas, missing quotes |
 | Privacy | Use client-side tools for sensitive data |
-| Tools | [DevToolsHub JSON Formatter](https://devtoolshub-seven.vercel.app/tools/json-formatter) — fast, free, private |
+| Tools | [DevToolsHub JSON Formatter](https://devtoolshub.cloud/tools/json-formatter) — fast, free, private |
 
 JSON formatting is a small skill that pays dividends every single day. Master it, and you'll debug faster, configure more confidently, and read API responses like a pro.
 
 ---
 
-*Have questions or tips of your own? Drop them in the comments! If this was helpful, check out more [free developer tools on DevToolsHub](https://devtoolshub-seven.vercel.app).*
+*Have questions or tips of your own? Drop them in the comments! If this was helpful, check out more [free developer tools on DevToolsHub](https://devtoolshub.cloud).*

@@ -2,18 +2,18 @@
 title: "Unix Timestamp Cheat Sheet: Convert, Read, and Debug Like a Pro"
 description: "A complete guide to Unix timestamps: convert seconds/milliseconds, handle timezones, common pitfalls, and one-liners for JavaScript, Python, SQL, Go, Rust, and more."
 tags: [webdev, javascript, tutorial, beginners]
-canonical_url: https://devtoolshub-seven.vercel.app/blog/timestamp-cheat-sheet
+canonical_url: https://devtoolshub.cloud/blog/timestamp-cheat-sheet
 published: true
-cover_image: https://devtoolshub-seven.vercel.app/og-image.png
+cover_image: https://devtoolshub.cloud/og-image.png
 ---
 
-> Originally published on [DevToolsHub](https://devtoolshub-seven.vercel.app/blog/timestamp-cheat-sheet) — free, privacy-first online tools for developers.
+> Originally published on [DevToolsHub](https://devtoolshub.cloud/blog/timestamp-cheat-sheet) — free, privacy-first online tools for developers.
 
 Every developer hits timestamps at some point. JWT expiration (`exp`), API pagination cursors, database audit fields — Unix timestamps are everywhere. Yet they're one of the most common sources of confusion (and bugs).
 
 This cheat sheet covers everything: conversion tricks, the **seconds vs milliseconds** trap, timezone gotchas, and one-liners for every major language.
 
-⏱ **Quick Try:** Convert timestamps instantly with our free [Timestamp Converter](https://devtoolshub-seven.vercel.app/tools/timestamp) — supports seconds, milliseconds, and multiple timezone formats.
+⏱ **Quick Try:** Convert timestamps instantly with our free [Timestamp Converter](https://devtoolshub.cloud/tools/timestamp) — supports seconds, milliseconds, and multiple timezone formats.
 
 ---
 
@@ -41,7 +41,7 @@ This is the most common timestamp bug in existence:
 
 **Rule of thumb:** If the value is around 1.7 billion → it's seconds. If it's around 1.7 trillion → it's milliseconds. The current epoch (June 2026) is about **1,782,000,000** in seconds.
 
-Our [Timestamp Converter](https://devtoolshub-seven.vercel.app/tools/timestamp) automatically detects whether your input is seconds or milliseconds — just paste and it works.
+Our [Timestamp Converter](https://devtoolshub.cloud/tools/timestamp) automatically detects whether your input is seconds or milliseconds — just paste and it works.
 
 ## One-Liners for Every Language
 
@@ -169,13 +169,13 @@ println!("{}", now.as_millis());      // ms
 
 ## Common JWT Timestamp Patterns
 
-If you're decoding JWTs (use our [JWT Decoder](https://devtoolshub-seven.vercel.app/tools/jwt-decoder)), you'll frequently need to check these timestamp claims:
+If you're decoding JWTs (use our [JWT Decoder](https://devtoolshub.cloud/tools/jwt-decoder)), you'll frequently need to check these timestamp claims:
 
 - **exp** — Token expiration (always in **seconds**)
 - **iat** — Token issued at (seconds)
 - **nbf** — Not valid before (seconds)
 
-Copy the `exp` value into the [Timestamp Converter](https://devtoolshub-seven.vercel.app/tools/timestamp) to instantly see if a token is expired — it color-codes expired vs valid.
+Copy the `exp` value into the [Timestamp Converter](https://devtoolshub.cloud/tools/timestamp) to instantly see if a token is expired — it color-codes expired vs valid.
 
 ## Time Zones: The Hidden Trap
 
@@ -189,6 +189,6 @@ When converting timestamps to readable dates:
 
 ---
 
-> 🎯 **Summary:** Unix timestamps = seconds since Jan 1, 1970 UTC. JS uses milliseconds, most backends use seconds. Timestamps are always UTC — timezone is a display concern. Use our [Timestamp Converter](https://devtoolshub-seven.vercel.app/tools/timestamp) for quick conversions and check JWT expiration with our [JWT Decoder](https://devtoolshub-seven.vercel.app/tools/jwt-decoder).
+> 🎯 **Summary:** Unix timestamps = seconds since Jan 1, 1970 UTC. JS uses milliseconds, most backends use seconds. Timestamps are always UTC — timezone is a display concern. Use our [Timestamp Converter](https://devtoolshub.cloud/tools/timestamp) for quick conversions and check JWT expiration with our [JWT Decoder](https://devtoolshub.cloud/tools/jwt-decoder).
 
-**Related Tools:** [Timestamp Converter](https://devtoolshub-seven.vercel.app/tools/timestamp) · [JWT Decoder](https://devtoolshub-seven.vercel.app/tools/jwt-decoder) · [UUID Generator](https://devtoolshub-seven.vercel.app/tools/uuid-generator)
+**Related Tools:** [Timestamp Converter](https://devtoolshub.cloud/tools/timestamp) · [JWT Decoder](https://devtoolshub.cloud/tools/jwt-decoder) · [UUID Generator](https://devtoolshub.cloud/tools/uuid-generator)

@@ -2,12 +2,12 @@
 title: "Base64 Encoding Explained: What Every Developer Needs to Know"
 description: "A complete guide to Base64 encoding — from how it works under the hood to real-world use cases in web development, APIs, and authentication."
 tags: [webdev, javascript, tutorial, security]
-canonical_url: https://devtoolshub-seven.vercel.app/blog/base64-encoding-guide
+canonical_url: https://devtoolshub.cloud/blog/base64-encoding-guide
 published: true
-cover_image: https://devtoolshub-seven.vercel.app/og-image.png
+cover_image: https://devtoolshub.cloud/og-image.png
 ---
 
-> Originally published on [DevToolsHub](https://devtoolshub-seven.vercel.app) — free, privacy-first developer tools.
+> Originally published on [DevToolsHub](https://devtoolshub.cloud) — free, privacy-first developer tools.
 
 Every developer encounters Base64 at some point. Maybe you're decoding a JWT token, encoding binary data for an API, or wondering why that string ends with `==`. 
 
@@ -63,7 +63,7 @@ eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIn0.
 SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
 ```
 
-Each section (header, payload, signature) is Base64url-encoded. You can decode them with a [JWT Decoder tool](https://devtoolshub-seven.vercel.app/tools/jwt-decoder) to inspect the contents without a backend.
+Each section (header, payload, signature) is Base64url-encoded. You can decode them with a [JWT Decoder tool](https://devtoolshub.cloud/tools/jwt-decoder) to inspect the contents without a backend.
 
 ### 2. Data URIs in HTML/CSS
 
@@ -118,7 +118,7 @@ btoa(unescape(encodeURIComponent("你好")));  // "5L2g5aW9"
 
 For quick one-off encoding/decoding, a dedicated tool is faster:
 
-👉 [Try the DevToolsHub Base64 Encoder/Decoder](https://devtoolshub-seven.vercel.app/tools/base64)
+👉 [Try the DevToolsHub Base64 Encoder/Decoder](https://devtoolshub.cloud/tools/base64)
 
 **Features:**
 - Full Unicode support
@@ -152,4 +152,4 @@ Base64 is one of those fundamental tools that every developer should understand.
 
 ---
 
-*Got questions about Base64 or other encoding schemes? Drop a comment below! For more developer tools and guides, visit [DevToolsHub](https://devtoolshub-seven.vercel.app).*
+*Got questions about Base64 or other encoding schemes? Drop a comment below! For more developer tools and guides, visit [DevToolsHub](https://devtoolshub.cloud).*
