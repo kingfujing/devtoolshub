@@ -4,7 +4,7 @@ description: "A complete reference for CSS units: absolute vs relative, px vs re
 tags: [webdev, css, tutorial, beginners]
 canonical_url: https://devtoolshub.cloud/blog/css-units-cheat-sheet
 published: true
-cover_image: https://devtoolshub.cloud/og-privacy-tools.png
+cover_image: https://devtoolshub.cloud/og-devto-cover.png
 ---
 
 > Originally published on [DevToolsHub](https://devtoolshub.cloud/blog/css-units-cheat-sheet) — free, privacy-first online tools for developers.

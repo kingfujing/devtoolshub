@@ -4,7 +4,7 @@ description: "A practical Git reference: essential commands, staging and committ
 tags: [webdev, git, tutorial, beginners]
 canonical_url: https://devtoolshub.cloud/blog/git-commands-cheat-sheet
 published: true
-cover_image: https://devtoolshub.cloud/og-privacy-tools.png
+cover_image: https://devtoolshub.cloud/og-devto-cover.png
 ---
 
 > Originally published on [DevToolsHub](https://devtoolshub.cloud/blog/git-commands-cheat-sheet) — free, privacy-first online tools for developers.
