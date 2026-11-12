@@ -304,7 +304,7 @@ export default function HomePage() {
       <AdSlot className="mb-12" />
 
       {/* Tools Grid */}
-      <section className="mb-16">
+      <section id="tools" className="mb-16 scroll-mt-20">
         <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
           <span className="w-1 h-5 bg-blue-500 rounded-full inline-block"></span>
           All Tools

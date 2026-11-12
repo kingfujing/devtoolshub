@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { TOOL_SEO, webAppJsonLd } from "@/lib/seo";
+
+const tool = TOOL_SEO.find((tl) => tl.slug === "base64")!;
 
 export const metadata: Metadata = {
   alternates: { canonical: "/tools/base64" },
@@ -12,5 +15,13 @@ export const metadata: Metadata = {
 };
 
 export default function ToolLayout({ children }: { children: React.ReactNode }) {
-  return children;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppJsonLd(tool)) }}
+      />
+      {children}
+    </>
+  );
 }

@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { TOOL_SEO, webAppJsonLd } from "@/lib/seo";
+
+const tool = TOOL_SEO.find((tl) => tl.slug === "token-counter")!;
 
 export const metadata: Metadata = {
   alternates: { canonical: "/tools/token-counter" },
@@ -18,5 +21,13 @@ export default function TokenCounterLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppJsonLd(tool)) }}
+      />
+      {children}
+    </>
+  );
 }

@@ -38,6 +38,7 @@ const TOOLS = [
   { name: "URL Encoder", href: "/tools/url-encoder", icon: "🔗" },
   { name: "JWT Decoder", href: "/tools/jwt-decoder", icon: "🔐" },
   { name: "Token Counter", href: "/tools/token-counter", icon: "🪙" },
+  { name: "AI ID Photo", href: "/tools/ai-id-photo", icon: "📷" },
 ];
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -84,7 +85,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </a>
             </nav>
             <div className="md:hidden flex items-center gap-2">
-              <a href="/tools" className="text-sm text-[#3b82f6] hover:text-blue-300 transition-colors">
+              <a href="/#tools" className="text-sm text-[#3b82f6] hover:text-blue-300 transition-colors">
                 All Tools
               </a>
             </div>

@@ -1,0 +1,47 @@
+# DevToolsHub
+
+> Free online developer tools. 100% client-side — every tool runs entirely in the user's browser. No sign-up, no tracking, no uploads: your data never leaves the device.
+
+Privacy-first developer utilities for formatting, encoding, generating, and inspecting data — free forever, usable directly in any web browser, with in-depth written guides.
+
+## Tools
+
+- [AI ID Photo Maker](https://devtoolshub.cloud/tools/ai-id-photo): Free online ID photo maker. Crop any photo to 1-inch (25×35mm), 2-inch (35×49mm) or passport (33×48mm) sizes with a clean background color — everything runs locally in your browser, no upload.
+- [Base64 Encode / Decode](https://devtoolshub.cloud/tools/base64): Encode and decode Base64 strings online. Supports Chinese, Unicode and special characters. Free online Base64 converter.
+- [Color Converter](https://devtoolshub.cloud/tools/color-converter): Convert colors between HEX, RGB and HSL formats online with live color preview. Supports hex, rgb(), hsl() and shorthand hex.
+- [JSON Formatter](https://devtoolshub.cloud/tools/json-formatter): Format, compress and validate JSON data online with syntax highlighting and error detection. Free developer tool.
+- [JWT Decoder](https://devtoolshub.cloud/tools/jwt-decoder): Decode and inspect JWT tokens online. View header, payload and signature. Client-side decoding - your tokens never leave your browser.
+- [Regex Tester](https://devtoolshub.cloud/tools/regex-tester): Test and debug regular expressions in real-time with live match highlighting, named group support and flag toggling. Free online regex tester.
+- [Timestamp Converter](https://devtoolshub.cloud/tools/timestamp): Convert between Unix timestamps and human-readable dates. Supports seconds, milliseconds, ISO format, UTC and local time.
+- [Token Counter](https://devtoolshub.cloud/tools/token-counter): Free online token counter for AI models. Estimate GPT-4o, Claude, Gemini token usage and context window consumption for any text — counts words, CJK characters, and cost. Runs 100% in your browser.
+- [URL Encoder / Decoder](https://devtoolshub.cloud/tools/url-encoder): Encode and decode URL components online. Supports encodeURIComponent and encodeURI with special character encoding.
+- [UUID Generator](https://devtoolshub.cloud/tools/uuid-generator): Generate random UUIDs v4 online. Bulk generation with one-click copy. Uses crypto.randomUUID() for cryptographically secure UUIDs.
+
+## Guides & Articles
+
+- [10 Free Online Developer Tools to Supercharge Your Workflow in 2026 | DevToolsHub](https://devtoolshub.cloud/blog/10-free-developer-tools-2026): Discover 10 essential free online developer tools for 2026. From JSON formatting to regex testing — all tools run locally in your browser with zero server uploads.
+- [Base64 Encoding & Decoding: What Every Developer Needs to Know | DevToolsHub](https://devtoolshub.cloud/blog/base64-encoding-guide): Learn how Base64 encoding works, when to use it, and common pitfalls. Includes practical examples with data URLs, JWT tokens, and browser APIs.
+- [Cron Expression Guide — DevToolsHub](https://devtoolshub.cloud/blog/cron-expression-guide): Complete cron expression reference. Master cron syntax with examples, special strings, common schedules, troubleshooting tips, common mistakes, and a developer FAQ.
+- [CSS Units Cheat Sheet — DevToolsHub](https://devtoolshub.cloud/blog/css-units-cheat-sheet): Complete CSS units reference — absolute vs relative units, viewport units, calc(), and when to use each. Includes practical examples for responsive design.
+- [Git Commands Cheat Sheet — DevToolsHub](https://devtoolshub.cloud/blog/git-commands-cheat-sheet): Essential Git commands reference for daily development. From git init to interactive rebase — commands, options, practical examples, common mistakes, and a developer FAQ.
+- [HTML Entities Reference — DevToolsHub](https://devtoolshub.cloud/blog/html-entities-reference): Complete HTML entities reference with escape codes. Find common symbols, special characters, currency signs, arrows, and mathematical operators.
+- [HTTP Status Codes Cheat Sheet — DevToolsHub](https://devtoolshub.cloud/blog/http-status-codes-cheat-sheet): Complete HTTP status code reference for developers. Every response code explained — 1xx informational, 2xx success, 3xx redirect, 4xx client error, 5xx server error.
+- [JavaScript Array Methods Cheat Sheet — DevToolsHub](https://devtoolshub.cloud/blog/javascript-array-methods-cheat-sheet): Complete JavaScript array methods reference with examples. From map() and filter() to flatMap() and toSorted() — every ES6+ array method explained.
+- [JSON Formatting 101: How to Debug JSON Data Like a Pro | DevToolsHub](https://devtoolshub.cloud/blog/json-formatting-101): Master JSON formatting, validation, and debugging with practical tips. Learn to use a JSON formatter effectively for cleaner API debugging and configuration management.
+- [JSON vs YAML: Which Data Format Should You Use? | DevToolsHub](https://devtoolshub.cloud/blog/json-vs-yaml): Compare JSON and YAML: readability, nesting, comments, anchors, parse speed, and when to choose each for config files and APIs. Includes conversion examples.
+- [JWT Decoder Guide: How to Decode JSON Web Tokens Without a Backend | DevToolsHub](https://devtoolshub.cloud/blog/jwt-decoder-guide): Learn how to decode JWT tokens client-side. Understand header, payload, signature, and how to inspect tokens safely without sending them to any server.
+- [JWT vs OAuth2: What's the Difference and When to Use Each? | DevToolsHub](https://devtoolshub.cloud/blog/jwt-vs-oauth2): Compare JWT and OAuth2: token format vs authorization framework, authentication vs authorization, third-party login, scopes, and when to use each. Includes code examples.
+- [JWT vs Session: Which Authentication Method Should You Use? | DevToolsHub](https://devtoolshub.cloud/blog/jwt-vs-session): Compare JWT and session-based authentication: stateless vs stateful, scalability, security, CSRF protection, and when to choose each. Includes code examples.
+- [5 Developer Tools That Respect Your Privacy | DevToolsHub](https://devtoolshub.cloud/blog/privacy-first-dev-tools): Discover developer tools that run entirely in your browser — no server uploads, no data collection, no tracking. Privacy-first tools for modern developers.
+- [The Complete Guide to Writing Better Regular Expressions | DevToolsHub](https://devtoolshub.cloud/blog/regex-guide): Master regular expressions with practical patterns and real-world examples. Learn regex flags, named groups, lookaheads, and debugging techniques.
+- [REST vs GraphQL: Which API Style Should You Use in 2026? | DevToolsHub](https://devtoolshub.cloud/blog/rest-vs-graphql): Compare REST and GraphQL: endpoints vs single schema, over-fetching, caching, versioning, N+1 resolvers, and when to choose each. Includes Node.js code examples.
+- [SQL Query Cheat Sheet — DevToolsHub](https://devtoolshub.cloud/blog/sql-query-cheat-sheet): Essential SQL query reference for developers. SELECT, JOIN, GROUP BY, subqueries, window functions, query optimization tips, common mistakes, and a developer FAQ.
+- [SQL vs NoSQL: Which Database Should You Choose in 2026? | DevToolsHub](https://devtoolshub.cloud/blog/sql-vs-nosql): Compare SQL and NoSQL databases: schema, scalability, transactions, consistency, query capabilities, and when to choose each. Includes code examples and decision guide.
+- [Unix Timestamp Cheat Sheet: Convert, Read, and Debug Timestamps Like a Pro | DevToolsHub](https://devtoolshub.cloud/blog/timestamp-cheat-sheet): A complete guide to Unix timestamps: convert seconds/milliseconds, handle timezones, common pitfalls, and one-liners for every programming language.
+- [UUID v4 vs UUID v7: Which One Should You Use? | DevToolsHub](https://devtoolshub.cloud/blog/uuid-v4-vs-v7): Compare UUID v4 and UUID v7: random vs time-ordered, database performance, sortability, and when to choose each. Includes practical code examples.
+
+## Optional
+
+- [About](https://devtoolshub.cloud/about): How DevToolsHub works, privacy model, and contact
+- [Blog index](https://devtoolshub.cloud/blog): All guides and tool tutorials
+- [Privacy Policy](https://devtoolshub.cloud/privacy): What data we (don't) collect
